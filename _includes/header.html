@@ -1,0 +1,20 @@
+<header>
+  <nav class="navbar navbar-light navbar-expand-lg">
+    <a class="navbar-brand" href="/">Las Rutas <img src="{{ site.imagenes | append: "/banners/logo.svg" | relative_url }}" alt="logo"> de Alberto.<small>es</small></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarprincipal"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navbarprincipal">
+        <ul class="navbar-nav">
+            <li class="nav-item{% if page.title == "Viajando…" %} active{% endif %}"><a class="nav-link" href="/viajando/">Viajando…</a></li>
+            <li class="nav-item{% if page.title == "Mis compañeros" %} active{% endif %}"><a class="nav-link" href="/companeros/">Mis compañeros</a></li>
+            <li class="nav-item{% if page.title == "Actividades" %} active{% endif %}"><a class="nav-link" href="/actividades/">Actividades</a></li>
+            <li class="nav-item{% if page.title == "Mapa de lugares" or page.title == "Lista de lugares" %} active{% endif %} dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">Lugares</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item{% if page.title == "Mapa de lugares" %} active{% endif %}" href="/mapa/">Mapa</a>
+                    <a class="dropdown-item{% if page.title == "Lista de lugares" %} active{% endif %}" href="/lugares/">Lista</a>
+                </div>
+            </li>
+            <li class="nav-item{% if page.title == "El proyecto" %} active{% endif %}"><a class="nav-link" href="/proyecto/">El proyecto</a></li>
+        </ul>
+    </div>
+  </nav>
+</header>

@@ -1,0 +1,29 @@
+---
+layout: page
+---
+<div id="tipos">
+  <p>Pulsa en un icono para ir directo:</p>
+  {%- for c in site.categories -%}
+    {%- capture actividadminusculas -%}{{ c | first | downcase }}{%- endcapture -%}
+    {%- capture codigoactividad -%}{% include mis-categorias.html in=actividadminusculas %}{%- endcapture -%}
+    {%- capture iconoactividad -%}{{ site.imagenes | append: "/pictogramas/" | append: codigoactividad | append: ".png" | relative_url }}{%- endcapture -%}
+    <img src="{{ iconoactividad }}" alt="Icono de {{ c | first | capitalize }}" title="{{ c | first | capitalize }}" data-code="{{ codigoactividad }}" />
+  {%- endfor -%}
+</div>
+<div id="listado">
+{%- for c in site.categories -%}
+  {%- capture actividadminusculas -%}{{ c | first | downcase }}{%- endcapture -%}
+  {%- capture codigoactividad -%}{% include mis-categorias.html in=actividadminusculas %}{%- endcapture -%}
+  {%- capture iconoactividad -%}{{ site.imagenes | append: "/pictogramas/" | append: codigoactividad | append: ".png" | relative_url }}{%- endcapture -%}
+  <hr>
+  <img id="cat-{{ codigoactividad }}" src="{{ iconoactividad }}" alt="Icono de {{ c | first | capitalize }}" title="{{ c | first | capitalize }}">
+  <h3>{{ c | first | capitalize }}</h3>
+  <ul>
+    {% assign rutas = c|last %}
+    {% for r in rutas reversed %}
+      <li><a href="{{ r.url | relative_url }}">{{ r.title }}</a></li>
+    {% endfor %}
+  </ul>
+  {% if forloop.last %}<hr />{% endif %}
+{%- endfor -%}
+</div>

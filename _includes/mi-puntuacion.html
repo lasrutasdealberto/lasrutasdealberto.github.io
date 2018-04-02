@@ -1,0 +1,111 @@
+{% capture estrella0 %}<img src="{{ "/puntuaciones/star0.png" | prepend: site.imagenes | relative_url }}" alt="Estrella oscura">{% endcapture %}
+{% capture estrella1 %}<img src="{{ "/puntuaciones/star1.png" | prepend: site.imagenes | relative_url }}" alt="Media estrella">{% endcapture %}
+{% capture estrella2 %}<img src="{{ "/puntuaciones/star2.png" | prepend: site.imagenes | relative_url }}" alt="Una estrella">{% endcapture %}
+{% capture pedal0 %}<img src="{{ "/puntuaciones/pedal0.png" | prepend: site.imagenes | relative_url }}" alt="Pedal oscuro">{% endcapture %}
+{% capture pedal1 %}<img src="{{ "/puntuaciones/pedal1.png" | prepend: site.imagenes | relative_url }}" alt="Medio pedal">{% endcapture %}
+{% capture pedal2 %}<img src="{{ "/puntuaciones/pedal2.png" | prepend: site.imagenes | relative_url }}" alt="Un pedal">{% endcapture %}
+{% capture piedra0 %}<img src="{{ "/puntuaciones/stone0.png" | prepend: site.imagenes | relative_url }}" alt="Piedra oscura">{% endcapture %}
+{% capture piedra1 %}<img src="{{ "/puntuaciones/stone1.png" | prepend: site.imagenes | relative_url }}" alt="Media piedra">{% endcapture %}
+{% capture piedra2 %}<img src="{{ "/puntuaciones/stone2.png" | prepend: site.imagenes | relative_url }}" alt="Una piedra">{% endcapture %}
+{% capture arbol0 %}<img src="{{ "/puntuaciones/tree0.png" | prepend: site.imagenes | relative_url }}" alt="Árbol oscuro">{% endcapture %}
+{% capture arbol1 %}<img src="{{ "/puntuaciones/tree1.png" | prepend: site.imagenes | relative_url }}" alt="Medio árbol">{% endcapture %}
+{% capture arbol2 %}<img src="{{ "/puntuaciones/tree2.png" | prepend: site.imagenes | relative_url }}" alt="Un árbol">{% endcapture %}
+{% capture hueso0 %}<img src="{{ "/puntuaciones/bone0.png" | prepend: site.imagenes | relative_url }}" alt="Hueso roto oscuro">{% endcapture %}
+{% capture hueso1 %}<img src="{{ "/puntuaciones/bone1.png" | prepend: site.imagenes | relative_url }}" alt="Medio hueso roto">{% endcapture %}
+{% capture hueso2 %}<img src="{{ "/puntuaciones/bone2.png" | prepend: site.imagenes | relative_url }}" alt="Un hueso roto">{% endcapture %}
+{% capture coche0 %}<img src="{{ "/puntuaciones/car0.png" | prepend: site.imagenes | relative_url }}" alt="Coche oscuro">{% endcapture %}
+{% capture coche1 %}<img src="{{ "/puntuaciones/car1.png" | prepend: site.imagenes | relative_url }}" alt="Medio coche">{% endcapture %}
+{% capture coche2 %}<img src="{{ "/puntuaciones/car2.png" | prepend: site.imagenes | relative_url }}" alt="Un coche">{% endcapture %}
+
+<!-- estrellas pedales arboles coches huesos pedruscos -->
+<div id="score-canvas">
+{% if include.in.estrellas %}
+  <div>Puntuación de la ruta:<br />
+  {% if include.in.estrellas == 0 %}Ninguna estrella</div>         <div>{{ estrella0 }}</div><div>{{ estrella0 }}</div><div>{{ estrella0 }}</div><div>{{ estrella0 }}</div><div>{{ estrella0 }}</div>{% endif %}
+  {% if include.in.estrellas == 1 %}Media estrella</div>           <div>{{ estrella1 }}</div><div>{{ estrella0 }}</div><div>{{ estrella0 }}</div><div>{{ estrella0 }}</div><div>{{ estrella0 }}</div>{% endif %}
+  {% if include.in.estrellas == 2 %}Una estrella</div>             <div>{{ estrella2 }}</div><div>{{ estrella0 }}</div><div>{{ estrella0 }}</div><div>{{ estrella0 }}</div><div>{{ estrella0 }}</div>{% endif %}
+  {% if include.in.estrellas == 3 %}Una estrella y media</div>     <div>{{ estrella2 }}</div><div>{{ estrella1 }}</div><div>{{ estrella0 }}</div><div>{{ estrella0 }}</div><div>{{ estrella0 }}</div>{% endif %}
+  {% if include.in.estrellas == 4 %}Dos estrellas</div>            <div>{{ estrella2 }}</div><div>{{ estrella2 }}</div><div>{{ estrella0 }}</div><div>{{ estrella0 }}</div><div>{{ estrella0 }}</div>{% endif %}
+  {% if include.in.estrellas == 5 %}Dos estrellas y media</div>    <div>{{ estrella2 }}</div><div>{{ estrella2 }}</div><div>{{ estrella1 }}</div><div>{{ estrella0 }}</div><div>{{ estrella0 }}</div>{% endif %}
+  {% if include.in.estrellas == 6 %}Tres estrellas</div>           <div>{{ estrella2 }}</div><div>{{ estrella2 }}</div><div>{{ estrella2 }}</div><div>{{ estrella0 }}</div><div>{{ estrella0 }}</div>{% endif %}
+  {% if include.in.estrellas == 7 %}Tres estrellas y media</div>   <div>{{ estrella2 }}</div><div>{{ estrella2 }}</div><div>{{ estrella2 }}</div><div>{{ estrella1 }}</div><div>{{ estrella0 }}</div>{% endif %}
+  {% if include.in.estrellas == 8 %}Cuatro estrellas</div>         <div>{{ estrella2 }}</div><div>{{ estrella2 }}</div><div>{{ estrella2 }}</div><div>{{ estrella2 }}</div><div>{{ estrella0 }}</div>{% endif %}
+  {% if include.in.estrellas == 9 %}Cuatro estrellas y media</div> <div>{{ estrella2 }}</div><div>{{ estrella2 }}</div><div>{{ estrella2 }}</div><div>{{ estrella2 }}</div><div>{{ estrella1 }}</div>{% endif %}
+  {% if include.in.estrellas == 10 %}Cinco estrellas</div>         <div>{{ estrella2 }}</div><div>{{ estrella2 }}</div><div>{{ estrella2 }}</div><div>{{ estrella2 }}</div><div>{{ estrella2 }}</div>{% endif %}
+{% endif %}
+
+{% if include.in.pedales %}
+  <div>Dificultad física:<br />
+  {% if include.in.pedales == 0 %}Ningún pedal</div>           <div>{{ pedal0 }}</div><div>{{ pedal0 }}</div><div>{{ pedal0 }}</div><div>{{ pedal0 }}</div><div>{{ pedal0 }}</div>{% endif %}
+  {% if include.in.pedales == 1 %}Medio pedal</div>            <div>{{ pedal1 }}</div><div>{{ pedal0 }}</div><div>{{ pedal0 }}</div><div>{{ pedal0 }}</div><div>{{ pedal0 }}</div>{% endif %}
+  {% if include.in.pedales == 2 %}Un pedal</div>               <div>{{ pedal2 }}</div><div>{{ pedal0 }}</div><div>{{ pedal0 }}</div><div>{{ pedal0 }}</div><div>{{ pedal0 }}</div>{% endif %}
+  {% if include.in.pedales == 3 %}Un pedal y medio</div>       <div>{{ pedal2 }}</div><div>{{ pedal1 }}</div><div>{{ pedal0 }}</div><div>{{ pedal0 }}</div><div>{{ pedal0 }}</div>{% endif %}
+  {% if include.in.pedales == 4 %}Dos pedales</div>            <div>{{ pedal2 }}</div><div>{{ pedal2 }}</div><div>{{ pedal0 }}</div><div>{{ pedal0 }}</div><div>{{ pedal0 }}</div>{% endif %}
+  {% if include.in.pedales == 5 %}Dos pedales y medio</div>    <div>{{ pedal2 }}</div><div>{{ pedal2 }}</div><div>{{ pedal1 }}</div><div>{{ pedal0 }}</div><div>{{ pedal0 }}</div>{% endif %}
+  {% if include.in.pedales == 6 %}Tres pedales</div>           <div>{{ pedal2 }}</div><div>{{ pedal2 }}</div><div>{{ pedal2 }}</div><div>{{ pedal0 }}</div><div>{{ pedal0 }}</div>{% endif %}
+  {% if include.in.pedales == 7 %}Tres pedales y medio</div>   <div>{{ pedal2 }}</div><div>{{ pedal2 }}</div><div>{{ pedal2 }}</div><div>{{ pedal1 }}</div><div>{{ pedal0 }}</div>{% endif %}
+  {% if include.in.pedales == 8 %}Cuatro pedales</div>         <div>{{ pedal2 }}</div><div>{{ pedal2 }}</div><div>{{ pedal2 }}</div><div>{{ pedal2 }}</div><div>{{ pedal0 }}</div>{% endif %}
+  {% if include.in.pedales == 9 %}Cuatro pedales y medio</div> <div>{{ pedal2 }}</div><div>{{ pedal2 }}</div><div>{{ pedal2 }}</div><div>{{ pedal2 }}</div><div>{{ pedal1 }}</div>{% endif %}
+  {% if include.in.pedales == 10 %}Cinco pedales</div>         <div>{{ pedal2 }}</div><div>{{ pedal2 }}</div><div>{{ pedal2 }}</div><div>{{ pedal2 }}</div><div>{{ pedal2 }}</div>{% endif %}
+{% endif %}
+
+{% if include.in.arboles %}
+  <div>Dificultad física:<br />
+  {% if include.in.arboles == 0 %}Ningún árbol</div>           <div>{{ arbol0 }}</div><div>{{ arbol0 }}</div><div>{{ arbol0 }}</div><div>{{ arbol0 }}</div><div>{{ arbol0 }}</div>{% endif %}
+  {% if include.in.arboles == 1 %}Medio árbol</div>            <div>{{ arbol1 }}</div><div>{{ arbol0 }}</div><div>{{ arbol0 }}</div><div>{{ arbol0 }}</div><div>{{ arbol0 }}</div>{% endif %}
+  {% if include.in.arboles == 2 %}Un árbol</div>               <div>{{ arbol2 }}</div><div>{{ arbol0 }}</div><div>{{ arbol0 }}</div><div>{{ arbol0 }}</div><div>{{ arbol0 }}</div>{% endif %}
+  {% if include.in.arboles == 3 %}Un árbol y medio</div>       <div>{{ arbol2 }}</div><div>{{ arbol1 }}</div><div>{{ arbol0 }}</div><div>{{ arbol0 }}</div><div>{{ arbol0 }}</div>{% endif %}
+  {% if include.in.arboles == 4 %}Dos árboles</div>            <div>{{ arbol2 }}</div><div>{{ arbol2 }}</div><div>{{ arbol0 }}</div><div>{{ arbol0 }}</div><div>{{ arbol0 }}</div>{% endif %}
+  {% if include.in.arboles == 5 %}Dos árboles y medio</div>    <div>{{ arbol2 }}</div><div>{{ arbol2 }}</div><div>{{ arbol1 }}</div><div>{{ arbol0 }}</div><div>{{ arbol0 }}</div>{% endif %}
+  {% if include.in.arboles == 6 %}Tres árboles</div>           <div>{{ arbol2 }}</div><div>{{ arbol2 }}</div><div>{{ arbol2 }}</div><div>{{ arbol0 }}</div><div>{{ arbol0 }}</div>{% endif %}
+  {% if include.in.arboles == 7 %}Tres árboles y medio</div>   <div>{{ arbol2 }}</div><div>{{ arbol2 }}</div><div>{{ arbol2 }}</div><div>{{ arbol1 }}</div><div>{{ arbol0 }}</div>{% endif %}
+  {% if include.in.arboles == 8 %}Cuatro árboles</div>         <div>{{ arbol2 }}</div><div>{{ arbol2 }}</div><div>{{ arbol2 }}</div><div>{{ arbol2 }}</div><div>{{ arbol0 }}</div>{% endif %}
+  {% if include.in.arboles == 9 %}Cuatro árboles y medio</div> <div>{{ arbol2 }}</div><div>{{ arbol2 }}</div><div>{{ arbol2 }}</div><div>{{ arbol2 }}</div><div>{{ arbol1 }}</div>{% endif %}
+  {% if include.in.arboles == 10 %}Cinco árboles</div>         <div>{{ arbol2 }}</div><div>{{ arbol2 }}</div><div>{{ arbol2 }}</div><div>{{ arbol2 }}</div><div>{{ arbol2 }}</div>{% endif %}
+{% endif %}
+
+{% if include.in.coches %}
+  <div>Tráfico:<br />
+  {% if include.in.coches == 0 %}Ningún coche</div>          <div>{{ coche0 }}</div><div>{{ coche0 }}</div><div>{{ coche0 }}</div><div>{{ coche0 }}</div><div>{{ coche0 }}</div>{% endif %}
+  {% if include.in.coches == 1 %}Medio coche</div>           <div>{{ coche1 }}</div><div>{{ coche0 }}</div><div>{{ coche0 }}</div><div>{{ coche0 }}</div><div>{{ coche0 }}</div>{% endif %}
+  {% if include.in.coches == 2 %}Un coche</div>              <div>{{ coche2 }}</div><div>{{ coche0 }}</div><div>{{ coche0 }}</div><div>{{ coche0 }}</div><div>{{ coche0 }}</div>{% endif %}
+  {% if include.in.coches == 3 %}Un coche y medio</div>      <div>{{ coche2 }}</div><div>{{ coche1 }}</div><div>{{ coche0 }}</div><div>{{ coche0 }}</div><div>{{ coche0 }}</div>{% endif %}
+  {% if include.in.coches == 4 %}Dos coches</div>            <div>{{ coche2 }}</div><div>{{ coche2 }}</div><div>{{ coche0 }}</div><div>{{ coche0 }}</div><div>{{ coche0 }}</div>{% endif %}
+  {% if include.in.coches == 5 %}Dos coches y medio</div>    <div>{{ coche2 }}</div><div>{{ coche2 }}</div><div>{{ coche1 }}</div><div>{{ coche0 }}</div><div>{{ coche0 }}</div>{% endif %}
+  {% if include.in.coches == 6 %}Tres coches</div>           <div>{{ coche2 }}</div><div>{{ coche2 }}</div><div>{{ coche2 }}</div><div>{{ coche0 }}</div><div>{{ coche0 }}</div>{% endif %}
+  {% if include.in.coches == 7 %}Tres coches y medio</div>   <div>{{ coche2 }}</div><div>{{ coche2 }}</div><div>{{ coche2 }}</div><div>{{ coche1 }}</div><div>{{ coche0 }}</div>{% endif %}
+  {% if include.in.coches == 8 %}Cuatro coches</div>         <div>{{ coche2 }}</div><div>{{ coche2 }}</div><div>{{ coche2 }}</div><div>{{ coche2 }}</div><div>{{ coche0 }}</div>{% endif %}
+  {% if include.in.coches == 9 %}Cuatro coches y medio</div> <div>{{ coche2 }}</div><div>{{ coche2 }}</div><div>{{ coche2 }}</div><div>{{ coche2 }}</div><div>{{ coche1 }}</div>{% endif %}
+  {% if include.in.coches == 10 %}Cinco coches</div>         <div>{{ coche2 }}</div><div>{{ coche2 }}</div><div>{{ coche2 }}</div><div>{{ coche2 }}</div><div>{{ coche2 }}</div>{% endif %}
+{% endif %}
+
+{% if include.in.huesos %}
+  <div>Peligrosidad:<br />
+  {% if include.in.huesos == 0 %}Ningún hueso roto</div>           <div>{{ hueso0 }}</div><div>{{ hueso0 }}</div><div>{{ hueso0 }}</div><div>{{ hueso0 }}</div><div>{{ hueso0 }}</div>{% endif %}
+  {% if include.in.huesos == 1 %}Medio hueso roto</div>            <div>{{ hueso1 }}</div><div>{{ hueso0 }}</div><div>{{ hueso0 }}</div><div>{{ hueso0 }}</div><div>{{ hueso0 }}</div>{% endif %}
+  {% if include.in.huesos == 2 %}Un hueso roto</div>               <div>{{ hueso2 }}</div><div>{{ hueso0 }}</div><div>{{ hueso0 }}</div><div>{{ hueso0 }}</div><div>{{ hueso0 }}</div>{% endif %}
+  {% if include.in.huesos == 3 %}Un hueso roto y medio</div>       <div>{{ hueso2 }}</div><div>{{ hueso1 }}</div><div>{{ hueso0 }}</div><div>{{ hueso0 }}</div><div>{{ hueso0 }}</div>{% endif %}
+  {% if include.in.huesos == 4 %}Dos huesos rotos</div>            <div>{{ hueso2 }}</div><div>{{ hueso2 }}</div><div>{{ hueso0 }}</div><div>{{ hueso0 }}</div><div>{{ hueso0 }}</div>{% endif %}
+  {% if include.in.huesos == 5 %}Dos huesos rotos y medio</div>    <div>{{ hueso2 }}</div><div>{{ hueso2 }}</div><div>{{ hueso1 }}</div><div>{{ hueso0 }}</div><div>{{ hueso0 }}</div>{% endif %}
+  {% if include.in.huesos == 6 %}Tres huesos rotos</div>           <div>{{ hueso2 }}</div><div>{{ hueso2 }}</div><div>{{ hueso2 }}</div><div>{{ hueso0 }}</div><div>{{ hueso0 }}</div>{% endif %}
+  {% if include.in.huesos == 7 %}Tres huesos rotos y medio</div>   <div>{{ hueso2 }}</div><div>{{ hueso2 }}</div><div>{{ hueso2 }}</div><div>{{ hueso1 }}</div><div>{{ hueso0 }}</div>{% endif %}
+  {% if include.in.huesos == 8 %}Cuatro huesos rotos</div>         <div>{{ hueso2 }}</div><div>{{ hueso2 }}</div><div>{{ hueso2 }}</div><div>{{ hueso2 }}</div><div>{{ hueso0 }}</div>{% endif %}
+  {% if include.in.huesos == 9 %}Cuatro huesos rotos y medio</div> <div>{{ hueso2 }}</div><div>{{ hueso2 }}</div><div>{{ hueso2 }}</div><div>{{ hueso2 }}</div><div>{{ hueso1 }}</div>{% endif %}
+  {% if include.in.huesos == 10 %}Cinco huesos rotos</div>         <div>{{ hueso2 }}</div><div>{{ hueso2 }}</div><div>{{ hueso2 }}</div><div>{{ hueso2 }}</div><div>{{ hueso2 }}</div>{% endif %}
+{% endif %}
+
+{% if include.in.pedruscos %}
+  <div>Técnica:<br />
+  {% if include.in.pedruscos == 0 %}Ninguna piedra</div>         <div>{{ piedra0 }}</div><div>{{ piedra0 }}</div><div>{{ piedra0 }}</div><div>{{ piedra0 }}</div><div>{{ piedra0 }}</div>{% endif %}
+  {% if include.in.pedruscos == 1 %}Media piedra</div>           <div>{{ piedra1 }}</div><div>{{ piedra0 }}</div><div>{{ piedra0 }}</div><div>{{ piedra0 }}</div><div>{{ piedra0 }}</div>{% endif %}
+  {% if include.in.pedruscos == 2 %}Una piedra</div>             <div>{{ piedra2 }}</div><div>{{ piedra0 }}</div><div>{{ piedra0 }}</div><div>{{ piedra0 }}</div><div>{{ piedra0 }}</div>{% endif %}
+  {% if include.in.pedruscos == 3 %}Una piedra y media</div>     <div>{{ piedra2 }}</div><div>{{ piedra1 }}</div><div>{{ piedra0 }}</div><div>{{ piedra0 }}</div><div>{{ piedra0 }}</div>{% endif %}
+  {% if include.in.pedruscos == 4 %}Dos piedras</div>            <div>{{ piedra2 }}</div><div>{{ piedra2 }}</div><div>{{ piedra0 }}</div><div>{{ piedra0 }}</div><div>{{ piedra0 }}</div>{% endif %}
+  {% if include.in.pedruscos == 5 %}Dos piedras y media</div>    <div>{{ piedra2 }}</div><div>{{ piedra2 }}</div><div>{{ piedra1 }}</div><div>{{ piedra0 }}</div><div>{{ piedra0 }}</div>{% endif %}
+  {% if include.in.pedruscos == 6 %}Tres piedras</div>           <div>{{ piedra2 }}</div><div>{{ piedra2 }}</div><div>{{ piedra2 }}</div><div>{{ piedra0 }}</div><div>{{ piedra0 }}</div>{% endif %}
+  {% if include.in.pedruscos == 7 %}Tres piedras y media</div>   <div>{{ piedra2 }}</div><div>{{ piedra2 }}</div><div>{{ piedra2 }}</div><div>{{ piedra1 }}</div><div>{{ piedra0 }}</div>{% endif %}
+  {% if include.in.pedruscos == 8 %}Cuatro piedras</div>         <div>{{ piedra2 }}</div><div>{{ piedra2 }}</div><div>{{ piedra2 }}</div><div>{{ piedra2 }}</div><div>{{ piedra0 }}</div>{% endif %}
+  {% if include.in.pedruscos == 9 %}Cuatro piedras y media</div> <div>{{ piedra2 }}</div><div>{{ piedra2 }}</div><div>{{ piedra2 }}</div><div>{{ piedra2 }}</div><div>{{ piedra1 }}</div>{% endif %}
+  {% if include.in.pedruscos == 10 %}Cinco piedras</div>         <div>{{ piedra2 }}</div><div>{{ piedra2 }}</div><div>{{ piedra2 }}</div><div>{{ piedra2 }}</div><div>{{ piedra2 }}</div>{% endif %}
+{% endif %}
+</div>

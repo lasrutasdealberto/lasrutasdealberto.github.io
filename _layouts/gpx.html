@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" creator="Jekyll {{ jekyll.version }}" version="1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+ <metadata>
+  <name>{{ page.title | xml_escape }}</name>
+  <desc>{{ page.excerpt | xml_escape }}</desc>
+  <author>
+   <name>{{ site.author | xml_escape }}</name>
+   <email id="{{ site.email | split: "@" | first | xml_escape }}" domain="{{ site.email | split: "@" | last | xml_escape }}"/>
+   <link href="{{ "/" | absolute_url }}">
+    <text>{{ site.title | xml_escape }}</text>
+    <type>text/html</type>
+   </link>
+  </author>
+  <copyright author="{{ site.email | split: "@" | last | xml_escape }}">
+   <year>{{ page.year | xml_escape }}</year>
+  </copyright>
+  <link href="{{ page.name | split: "." | first | append: "/" | absolute_url }}">
+   <text>Vea los detalles de la ruta en la web</text>
+   <type>text/html</type>
+  </link>
+ </metadata>
+ {%- for wpt in page.waypoints %}
+ <wpt lat="{{ wpt.lat | xml_escape }}" lon="{{ wpt.lon | xml_escape }}">
+  <name>{{ wpt.nombre | xml_escape }}</name>
+  {% capture miscategorias %}{% include mis-categorias.html in=wpt.tipo %}{% endcapture %}<type>{{ miscategorias | capitalize }}</type>
+ </wpt>
+  {%- endfor %}
+ <trk>
+  <name>{{ page.title | xml_escape }}</name>
+  <desc>{{ page.content | markdownify | xml_escape | strip }}</desc>
+  {% capture miscategorias %}{% include mis-categorias.html in=page.tipo %}{% endcapture %}<type>{{ miscategorias | capitalize }}</type>
+  <trkseg>
+   {%- for pt in page.points %}
+   <trkpt lat="{{ pt.lat | xml_escape }}" lon="{{ pt.lon | xml_escape }}"><ele>{{ pt.ele | xml_escape }}</ele></trkpt>
+   {%- endfor %}
+  </trkseg>
+ </trk>
+</gpx>

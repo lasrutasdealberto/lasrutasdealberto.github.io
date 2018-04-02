@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   id="svg4184"
+   viewBox="0 0 49.999998 49.999998"
+   height="50"
+   width="50"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="btn-feed.svg">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1440"
+     inkscape:window-height="851"
+     id="namedview4439"
+     showgrid="false"
+     inkscape:zoom="4.72"
+     inkscape:cx="25"
+     inkscape:cy="25"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg4184" />
+  <defs
+     id="defs4186" />
+  <metadata
+     id="metadata4189">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(445,-381.64792)"
+     id="layer1">
+    <rect
+       ry="0"
+       y="381.64792"
+       x="-445"
+       height="50"
+       width="50"
+       id="rect4173"
+       style="fill:#ffa500;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       transform="translate(2.995842,5.571987)"
+       id="g4144">
+      <circle
+         style="fill:#ffffff;fill-opacity:1"
+         class="symbol"
+         cx="-436.04346"
+         cy="414.12354"
+         r="6.5238099"
+         id="circle9" />
+      <path
+         style="fill:#ffffff;fill-opacity:1"
+         class="symbol"
+         d="m -442.56727,401.07593 a 19.571429,19.571429 0 0 1 19.57143,19.57143 l 6.5238,0 a 26.095238,26.095238 0 0 0 -26.09523,-26.09524 z"
+         id="path11" />
+      <path
+         style="fill:#ffffff;fill-opacity:1"
+         class="symbol"
+         d="m -442.56727,388.02831 a 32.619049,32.619049 0 0 1 32.61904,32.61905 l 6.52381,0 a 39.142859,39.142859 0 0 0 -39.14285,-39.14286 z"
+         id="path13" />
+    </g>
+  </g>
+</svg>

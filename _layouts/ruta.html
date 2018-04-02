@@ -1,0 +1,279 @@
+---
+layout: default
+# Primero la foto destacada. Luego dos columnas.
+# La primera con el tipo (y su icono), el título, la fecha.
+# Luego el mapa, con los controles mínimos (paso de meter controles dentro del mapa por ahora.
+# Abajo un div que ponga "Aquí irá el perfil de la ruta".
+# Controles para cambiar el tipo de mapa, el color de la línea, si aparecen o no los waypoints.
+# Por supuesto todo esto se guardará en el navegador y se recordarán las opciones.
+#
+# Después el texto del artículo.
+# Luego el visor de fotos, que será un slider
+# Fotos de la ruta
+# Fotos de cada Waypoint, con tipo, título, fotos y enlace para centrar en el mapa.
+# Valoración
+# Comentarios, ya sea de facebook o de disqus.
+#
+# En la segunda columna:
+# Botón para descargar el GPX.
+# Datos de Altura, distancia, tiempo, IBP, etc.
+# Botón para compartir en facebook, twitter y whatsapp.
+# Compañeros de la ruta.
+# Miniaturas de todas las fotos
+# Lugares por donde se ha pasado
+# Clave API AIzaSyBRwMAB0JqKaxOvuIRsdkfOt4KgVpxxH4g
+
+---
+{%- capture actividadminusculas -%}{{ page.category | xml_escape | downcase }}{%- endcapture -%}
+{%- capture codigoactividad -%}{% include mis-categorias.html in=actividadminusculas %}{%- endcapture -%}
+{%- capture iconoactividad -%}{{ site.imagenes | append: "/pictogramas/" | append: codigoactividad | append: ".png" | relative_url }}{%- endcapture -%}
+
+{%- capture fecha -%}{% include mi-fecha.html in=page.date %}{%- endcapture -%}
+
+{%- assign nfotos = page.fotos.size | default: 0 -%}
+{%- assign nwfotos = 0 -%}
+{%- for w in page.waypoints -%}{%- assign nwfotos = w.fotos.size | default: 0 | plus: nwfotos -%}{%- endfor -%}
+{%- assign nfotostotal = nfotos | plus: nwfotos -%}
+
+<article>
+  <header>
+    <img src="destacada.jpg" alt="Imagen destacada de {{ page.title | xml_escape }}" />
+    <h3><img src="{{ iconoactividad }}" alt="{{ actividadminusculas }}" />{{ actividadminusculas | capitalize }}</h3>
+    <h1>{{ page.title | xml_escape }}</h1>
+    <h5><i class="far fa-calendar-alt"></i><time datetime="{{ page.date | date_to_xmlschema }}">{{ fecha | capitalize }}</time></h5>
+  </header>
+
+  <div class="fila">
+    <aside>
+    
+      <section id="download-gpx">
+      <a class="boton-rojo" role="button" href="{{ page.slug | append: ".gpx" }}"><i class="fas fa-map-marker-alt"></i> Descarga el track</a>
+      </section>
+      
+      <section id="route-numbers">
+      <h4>Datos de la ruta</h4>
+      <div id="route-numbers-canvas">
+        <div title="{{ page.cantidades.distancia | divided_by: 1000 }} kilómetros recorridos"><i class="fas fa-long-arrow-alt-right fa-fw"></i>{{ page.cantidades.distancia | divided_by: 1000 }} km</div>
+        {% if page.cantidades.ibp %}
+          <div title="El índice IBP es de {{ page.cantidades.ibp }}"><i class="fas fa-trophy fa-fw"></i>{{ page.cantidades.ibp }}</div>
+        {% endif %}
+        <div title="La duración total incluyendo paradas es de {{ page.cantidades.duracion | divided_by: 60 }}:{{ page.cantidades.duracion | modulo: 60 | prepend: "00" | slice: -2, 2 }} horas"><i class="fas fa-clock fa-fw"></i>{{ page.cantidades.duracion | divided_by: 60 }}:{{ page.cantidades.duracion | modulo: 60 | prepend: "00" | slice: -2, 2 }} h</div>
+        <div title="El tiempo en movimiento es de {{ page.cantidades.enmovimiento | divided_by: 60 }}:{{ page.cantidades.enmovimiento | modulo: 60 | prepend: "00" | slice: -2, 2 }} horas"><i class="fas fa-stopwatch fa-fw"></i>{{ page.cantidades.enmovimiento | divided_by: 60 }}:{{ page.cantidades.enmovimiento | modulo: 60 | prepend: "00" | slice: -2, 2 }} h</div>
+        <div title="Ascenso acumulado de {{ page.cantidades.ascenso }} metros"><i class="fas fa-angle-double-up fa-fw"></i>{{ page.cantidades.ascenso }} m</div>
+        <div title="Descenso acumulado de {{ page.cantidades.descenso }} metros"><i class="fas fa-angle-double-down fa-fw"></i>{{ page.cantidades.descenso }} m</div>
+        <div title="Altitud máxima en {{ page.cantidades.cima }} metros"><i class="fas fa-angle-up fa-fw"></i>{{ page.cantidades.cima }} m</div>
+        <div title="Altitud mínima en {{ page.cantidades.sima }} metros"><i class="fas fa-angle-down fa-fw"></i>{{ page.cantidades.sima }} m</div>
+        {% if page.cantidades.circularpunto %}
+          <div title="La ruta es circular"><i class="fas fa-redo-alt fa-fw"></i>Sí</div>
+        {% elsif page.cantidades.circularlocalidad %}
+          <div title="La ruta empieza y acaba en la misma localidad"><i class="fas fa-redo-alt fa-fw"></i>Misma localidad</div>
+        {% else %}
+          <div title="La ruta acaba en una localidad distinta a la del inicio"><i class="fas fa-redo-alt fa-fw"></i>No</div>
+        {% endif %}
+      </div>
+      </section>
+      
+      {% include share-page.html %}
+      
+      {% if page.gente %}
+        <section id="friends">
+        <h4>Amigos</h4>
+          {%- for a in page.gente -%}
+            {%- capture slugnombre -%}{%- include mi-slugify.html in=a -%}{%- endcapture -%}
+            <a href="{{ slugnombre | prepend: "/companeros/#" | relative_url }}"><img src="{{ site.imagenes | append: "/companeros/" | append: slugnombre | append: ".jpg" | relative_url }}" alt="Foto de {{ a | escape }}" title="{{ a | escape }}" /></a>
+          {%- endfor -%}
+        </section>
+      {% endif %}
+
+      {% if nfotos > 0 or nwfotos > 0 %}
+        {% assign slideto = 0 %}
+        <section id="photo-thumbs">
+        <h4>Fotos de la ruta</h4>
+        {% for f in page.fotos -%}
+          <img src="{{ "thumbnail-" | append: f }}" alt="Foto {{ forloop.index }} de {{ page.title | xml_escape }}" title="{{ page.title | xml_escape }}" data-slide-to="{{ slideto }}" />
+          {%- assign slideto = slideto | plus: 1 -%}
+        {%- endfor -%}
+        {%- for w in page.waypoints -%}
+          {%- for wf in w.fotos -%}
+            <img src="{{ "thumbnail-" | append: wf }}" alt="Foto {{ forloop.index }} de {{ w.nombre | xml_escape }}" title="{{ w.nombre | xml_escape }}" data-slide-to="{{ slideto }}" />
+            {%- assign slideto = slideto | plus: 1 -%}
+          {%- endfor -%}
+        {%- endfor %}
+        {% assign slideto = 0 %}
+        {% if page.googlephotos %}
+          <a class="boton-verde" href="https://photos.app.goo.gl/{{ page.googlephotos }}" role="button">
+            <i class="fas fa-images"></i> Ruta en Google Photos
+          </a>
+        {% endif %}
+        </section>
+      {% endif %}
+
+    </aside>
+  
+    <div class="main">
+      
+      {% if page.routestring %}
+      {%- capture pausas -%}
+      {%- if page.pausas -%}
+      {"n":{{ page.pausas.size }},"lat":[{% for i in page.pausas %}{{ i.lat }}{% unless forloop.last %},{% endunless %}{% endfor %}],"lon":[{% for i in page.pausas %}{{ i.lon }}{% unless forloop.last %},{% endunless %}{% endfor %}],"sec":[{% for i in page.pausas %}{{ i.sec }}{% unless forloop.last %},{% endunless %}{% endfor %}]}
+      {%- else -%}
+      {"n":0,"lat":[],"lon":[],"sec":[]}
+      {%- endif -%}
+      {%- endcapture -%}
+      
+      {%- capture altimetria -%}
+      {%- if page.altimetria -%}
+      {"n":{{ page.altimetria.size }},"l":{{page.cantidades.distancia}},"lat":[{% for i in page.altimetria %}{{ i.lat }}{% unless forloop.last %},{% endunless %}{% endfor %}],"lon":[{% for i in page.altimetria %}{{ i.lon }}{% unless forloop.last %},{% endunless %}{% endfor %}],"sec":[{% for i in page.altimetria %}{{ i.ele }}{% unless forloop.last %},{% endunless %}{% endfor %}]}
+      {%- else -%}
+      {"n":0,"l":{{ page.cantidades.distancia }},"lat":[],"lon":[],"ele":[]}
+      {%- endif -%}
+      {%- endcapture -%}
+        <section id="map">
+          <h4>Mapa</h4>
+          <div id="map-canvas" data-nombre="{{ page.title | escape }}" data-linea="{{ page.routestring | replace: " ", ""}}" data-circular="{% if page.cantidades.circularpunto %}true{% else %}false{% endif %}" data-pausas="{{ pausas | escape }}" data-ele="{{ altimetria | escape }}"></div>
+          {% if page.altimetria %}
+            <div id="elevation-canvas">Próximamente aquí la altimetría, cuando aprenda a generar un SVG con Javascript. Los datos están como data-ele en id=map-canvas.</div>
+          {% endif %}
+        </section>
+      {% endif %}
+      
+      <section id="journal">
+      <h4>Crónica</h4>
+      {{ content }}
+      </section>
+
+      {% if nfotos > 0 %}
+        <section id="visor">
+        <h4>Visor</h4>
+        {% assign orden = 1 %}
+        <div id="visor-canvas" class="carousel slide" data-interval="false" data-ride="false">
+          <div class="carousel-inner">
+          {% for i in page.fotos %}
+            <div class="carousel-item{% if orden <= 1 %} active{% endif %}">
+              <img {% if orden > 2 and orden < nfotostotal %}src="{{ site.imagenes | append: "/transparent.png" | relative_url }}" data-{% endif %}src="{{ i }}" alt="Foto {{forloop.index}} de {{ page.title | escape }}" />
+              <div class="carousel-caption">
+                <p><img src="{{ iconoactividad }}" alt="{{ actividadminusculas }}" /><span>{{ page.title | escape }} ({{forloop.index}})</span></p>
+              </div>
+            </div>
+            {% assign orden = orden | plus: 1 %}
+          {% endfor %}
+          {% for w in page.waypoints %}
+            {% capture tipowaypoint %}{% include mis-categorias.html in=w.tipo %}{% endcapture %}
+            {% capture iconowaypoint %}{{ w.tipo | prepend: "00" | slice: -2, 2 | append: ".png" | prepend: "/pictogramas/" | prepend: site.imagenes | relative_url }}{% endcapture %}
+            {% for wp in w.fotos %}
+              <div class="carousel-item{% if orden == 0 %} active{% endif %}">
+                <img {% if orden > 2 and orden < nfotostotal %}src="{{ site.imagenes | append: "/transparent.png" | relative_url }}" data-{% endif %}src="{{ wp }}" alt="Foto {{forloop.index}} de {{ w.nombre | escape }}" />
+                <div class="carousel-caption">
+                  <p><img src="{{ iconowaypoint }}" alt="{{ tipowaypoint | capitalize }}" /><span>{{ w.nombre | escape }} ({{forloop.index}})</span></p>
+                </div>
+              </div>
+              {% assign orden = orden | plus: 1 %}
+            {% endfor %}
+          {% endfor %}
+          </div>
+          <a class="carousel-control-prev" href="#visor-canvas" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon"><i class="fas fa-arrow-alt-circle-left fa-2x" style="color: green"></i></span>
+          </a>
+          <a class="carousel-control-next" href="#visor-canvas" role="button" data-slide="next">
+            <span class="carousel-control-next-icon"><i class="fas fa-arrow-alt-circle-right fa-2x" style="color: green"></i></span>
+          </a>
+        </div>
+        </section>
+      {% endif %}
+      
+      {% if nfotos > 0 %}
+        <section id="photos">
+          <h4>Fotos de la ruta</h4>
+          <div>
+            {% for f in page.fotos -%}
+              <img src="thumbnail-{{ f }}" alt="Foto {{ forloop.index }} de {{ page.title | xml_escape }}" data-slide-to="{{ slideto }}" />
+              {%- assign slideto = slideto | plus: 1 -%}
+            {%- endfor %}
+          </div>
+        </section>
+      {% endif %}
+     
+      {% if page.waypoints %}
+        <section id="waypoints">
+          <h4>Waypoints de la ruta</h4>
+          {% for w in page.waypoints %}
+            <div id="waypoint-{{ forloop.index0 }}" class="waypoint" data-lat="{{ w.lat }}" data-lon="{{ w.lon }}" data-type="{{ w.tipo }}" data-nombre="{{ w.nombre | escape }}">
+              {% capture tipowaypoint %}{% include mis-categorias.html in=w.tipo %}{% endcapture %}
+              {% capture nombreicono %}{{  w.tipo | prepend: "00" | slice: -2, 2 }}{% endcapture %}
+              <h5><img src="{{ site.imagenes | append: "/pictogramas/" | append: nombreicono | append: ".png" | relative_url }}" alt="{{ tipowaypoint | capitalize }}" />{{ tipowaypoint | capitalize }}</h5>
+              <h4>{{ w.nombre | escape }}</h4>
+              {%- if w.fotos -%}
+                {%- for wf in w.fotos -%}
+                  <img src="thumbnail-{{ wf }}" alt="Foto {{ forloop.index }} de {{ w.nombre | escape }}" data-slide-to="{{ slideto }}" />
+                  {%- assign slideto = slideto | plus: 1 -%}
+                {%- endfor -%}
+              <br />  
+              {%- endif -%}  
+              <button class="boton-verde" type="button"><i class="far fa-map"></i> Mostrar punto en el mapa</button>
+            </div>
+          {% endfor %}
+        </section>
+      {% endif %}
+
+      {% if page.puntuacion %}
+      <section id="score">
+        <h4>Puntuación de la ruta</h4>
+        {% include mi-puntuacion.html in=page.puntuacion %}
+        </section>
+      {% endif %}
+
+      {% if page.otrasjornadas %}
+      {% comment %}La lista está ordenada y el día actual lo marcamos como "this". El formato será {% endcomment %}
+      <section id="other-days">
+        <h4>Otros días del viaje</h4>
+        <ul>
+          {% for l in page.otrasjornadas %}
+            {% if l == "this" %}
+              <li>{{ page.title | escape }}</li>
+            {% else %}
+              {% assign url = site.posts | where:"slug", l | first %}
+              <li>{% if url["url"] %}<a href="{{ url["url"] | relative_url }}">{{ url["title"] | xml_escape }}</a>{% else %}En preparación{% endif %}</li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </section>
+      {% endif %}
+      
+      {% if page.tags.size > 0 %}
+        <section id="visited-cities">
+        <h4>Lugares visitados</h4>
+        <div class="list-group">
+          {% for lugar in page.tags %}
+            {% capture lugarslug %}{% include mi-slugify.html in=lugar %}{% endcapture %}
+            <a href="{{ lugarslug | prepend: "/lugares#" | relative_url }}" class="list-group-item">
+              {{ lugar | escape }} <span class="pildora-azul">{{ site.tags[lugar].size }}</span>
+            </a>
+          {% endfor %}
+        </div>
+        </section>
+      {% endif %}
+      
+      {% if page.wikiloc or page.strava %}
+        <section id="external-links">
+        <h4>Más info</h4><div>
+        {%- if page.wikiloc -%}
+          <a class="boton-verde" href="https://es.wikiloc.com/wikiloc/view.do?id={{ page.wikiloc }}" role="button"><i class="fas fa-globe"></i> Wikiloc</a>
+        {%- endif -%}
+        {%- if page.strava -%}
+          <a class="boton-strava" href="https://www.strava.com/activities/{{ page.strava }}" role="button"><i class="fab fa-strava"></i> Strava</a>
+        {%- endif -%}
+        </div></section>
+      {% endif %}
+
+      <section id="comments">
+      <h4>Deja tu comentario</h4>
+      <div id="comments-canvas">Próximamente deberían ir aquí los comentarios.</div>
+      </section>
+            
+      {% include social-networks.html %}
+      
+      {% include linked-webs.html %}
+      
+    </div>
+  </div>
+</article>

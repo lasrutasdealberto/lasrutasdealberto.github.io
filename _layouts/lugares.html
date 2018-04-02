@@ -1,0 +1,29 @@
+---
+layout: page
+---
+<div id="grupo-input">
+  <input id="lugares-search" type="text" class="control-formulario" placeholder="Localidad a buscar" list="lugares-datalist" /><span class="grupo-input-texto"><i class="fas fa-search"></i></span>
+  <div class="feedback">Ese lugar no existe en nuestra base de datos.</div>
+</div>
+<datalist id="lugares-datalist">
+{%- for t in site.tags -%}
+    {%- assign lugar = t | first -%}
+    {%- capture lugarslug -%}{%- include mi-slugify.html in=lugar -%}{%- endcapture -%}
+    <option value="{{ lugar | escape }}" data-slug="{{ lugarslug }}"></option>
+{%- endfor -%}
+</datalist>
+
+<div id="listado">
+{%- assign tagsordenados = site.tags | sort -%}
+{%- for t in tagsordenados -%}
+    {%- assign lugar = t | first -%}
+    {%- capture lugarslug -%}{%- include mi-slugify.html in=lugar -%}{%- endcapture -%}
+    {%- assign rutas = t | last -%}
+    <div><h6 id="{{lugarslug}}">{{lugar}}</h6></div>
+    <div><ul>
+    {%- for r in rutas %}
+      <li><a href="{{ r.url | relative_url }}">{{ r.title }}</a></li>
+    {%- endfor %}
+    </ul></div>
+{%- endfor -%}
+</div>

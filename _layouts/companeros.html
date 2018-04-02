@@ -1,0 +1,38 @@
+---
+layout: page
+emptyArray: []
+---
+
+{% assign aux = layout.emptyArray %}
+{% for p in site.posts %}
+{% if p.gente %}
+  {% assign aux = aux | concat: p.gente %}
+{% endif %}
+{% endfor %}
+
+{% assign gente = aux | uniq %}
+
+<div id="amigos">
+  <p>Pulsa en una foto para ir directo:</p>
+{%- for g in gente -%}
+  {%- capture slugnombre -%}{%- include mi-slugify.html in=g -%}{%- endcapture -%}
+  <img src="{{ site.imagenes | append: "/companeros/" | append: slugnombre | append: ".jpg" | relative_url }}" alt="Foto de {{ g | escape }}" title="{{ g | escape }}" data-slug="{{ slugnombre }}" />
+{%- endfor -%}
+</div>
+
+<div id="listado">
+  {% for g in gente %}
+  {% capture slugnombre %}{% include mi-slugify.html in=g %}{% endcapture %}
+    <hr>
+    <img id="{{ slugnombre }}" src="{{ site.imagenes | append: "/companeros/" | append: slugnombre | append: ".jpg" | relative_url }}" alt="Foto de {{ g | escape }}" title="{{ g | escape }}" />
+    <h3>{{ g }}</h3>
+    <ul>
+    {% for p in site.posts reversed %}
+      {% for candidato in p.gente %}
+        {% if g == candidato %}<li><a href="{{ p.url | relative_url }}">{{ p.title }}</a></li>{% endif %}
+      {% endfor %}
+    {% endfor %}
+    </ul>
+    {% if forloop.last %}<hr />{% endif %}
+  {% endfor %}
+</div>

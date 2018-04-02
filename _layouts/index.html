@@ -1,0 +1,42 @@
+---
+layout: default
+---
+<div class="fila"{% if paginator.page == 1 %} data-last="{{ paginator.total_pages }}"{% endif %}>
+  {% for post in paginator.posts %}
+    <article>
+      <img src="{{ post.slug | prepend: "/" | append: "/destacada.jpg" | relative_url }}" alt="{{ post.title | xml_escape }}" />
+      {% capture actividadminusculas %}{{ post.category | downcase }}{% endcapture %}
+      {% capture codigoactividad %}{% include mis-categorias.html in=actividadminusculas %}{% endcapture %}
+      <img src="{{ site.imagenes | append: "/pictogramas/" | append: codigoactividad | append: ".png" | relative_url }}" alt="{{ post.category | capitalize | xml_escape }}" />
+      <h6>{{ post.category | capitalize | xml_escape }}</h6>
+      <h4>{{ post.title | xml_escape }}</h4>
+      {% capture fecha %}{% include mi-fecha.html in=post.date %}{% endcapture %}
+      <h6>{{ fecha | capitalize | xml_escape }}</h6>
+      <p>{{ post.excerpt | strip_html | xml_escape }}</p>
+      <div><a href="{{ post.url | relative_url }}" class="boton-verde">Ver crónica</a></div>
+    </article>
+  {% endfor %}
+</div>
+{% if paginator.total_pages > 1 %}
+  <div id="ajax-load">
+    {% if paginator.page == 1 %}
+     <button type="button" class="boton-azul">Cargar más</button> 
+    {% else %}
+    <ul class="pagination">
+      <li class="page-item"><a class="page-link" href="{{ "/" | relative_url }}">«</a></li>
+      <li class="page-item"><a class="page-link" href="{{ paginator.previous_page_path | relative_url }}">‹</a></li>
+      {% for p in (1..paginator.total_pages) %}
+        {% if p == paginator.page %}
+          <li class="page-item active"><span class="page-link"><em>{{ p }}</em></span></li>
+        {% elsif p == 1 %}
+          <li class="page-item"><a class="page-link" href="{{ "/" | relative_url }}">1</a></li>
+        {% else %}
+          <li class="page-item"><a class="page-link" href="{{ site.paginate_path | replace: ':num', p | relative_url }}">{{ p }}</a></li>
+        {% endif %}
+      {% endfor %}
+      {% if paginator.next_page %}<li class="page-item"><a class="page-link" href="{{ paginator.next_page_path | relative_url }}">›</a></li>{% endif %}
+      {% if paginator.page < paginator.total_pages %}<li class="page-item"><a class="page-link" href="{{ site.paginate_path | replace: ':num', paginator.total_pages | relative_url }}">»</a></li>{% endif %}
+    </ul>
+    {% endif %}
+  </div>
+{% endif %}

@@ -1,0 +1,25 @@
+---
+layout: default
+---
+<article>
+  <header>
+    <img src="destacada.jpg" alt="Imagen destacada de {{ page.title | xml_escape }}" />
+    <h1>{{ page.title | xml_escape }}</h1>
+  </header>
+  <div class="fila">
+    <div class="main">
+      <section id="text">
+        {{ content }}
+      </section>
+      <section id="comments">
+        <h4>Deja tu comentario</h4>
+        <div id="comments-canvas">Próximamente deberían ir aquí los comentarios.</div>
+      </section>
+    </div>
+    <aside>
+      {% include share-page.html %}
+      {% include social-networks.html %}
+      {% include linked-webs.html %}
+    </aside>
+  </div>
+</article>

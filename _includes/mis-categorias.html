@@ -1,0 +1,100 @@
+{%- capture resultado -%}
+{%- case include.in -%}
+{%- when 0 -%}sin especificar
+{%- when 1 -%}senderismo
+{%- when 2 -%}MTB
+{%- when 3 -%}motociclismo
+{%- when 4 -%}alpinismo
+{%- when 5 -%}carrera
+{%- when 6 -%}avión
+{%- when 7 -%}ciclismo
+{%- when 8 -%}moto de trail
+{%- when 9 -%}a pie
+{%- when 10 -%}tren
+{%- when 11 -%}cicloturismo
+{%- when 12 -%}carrera de montaña
+{%- when 13 -%}coche
+{%- when 14 -%}moto de trial
+{%- when 15 -%}moto de enduro
+{%- when 16 -%}natación
+{%- when 17 -%}orientación
+{%- when 18 -%}triatlon
+{%- when 19 -%}carrera descalzo
+{%- when 20 -%}canicross
+{%- when 21 -%}dron
+{%- when 22 -%}bicicleta con remolque
+{%- when 23 -%}bicicleta eléctrica
+{%- when 24 -%}ciclocross
+{%- when 25 -%}fuente
+{%- when 26 -%}geotesoro
+{%- when 27 -%}panorámica
+{%- when 28 -%}campamento
+{%- when 29 -%}amarre
+{%- when 30 -%}refugio libre
+{%- when 31 -%}refugio
+{%- when 32 -%}aparcamiento
+{%- when 33 -%}cima
+{%- when 34 -%}árbol
+{%- when 35 -%}ruinas arqueológicas
+{%- when 36 -%}foto
+{%- when 37 -%}lago
+{%- when 38 -%}río
+{%- when 39 -%}puente
+{%- when 40 -%}intersección
+{%- when 41 -%}información
+{%- when 42 -%}waypoint
+{%- when 43 -%}cascada
+{%- when 44 -%}picnic
+{%- when 45 -%}parque
+{%- when 46 -%}collado de montaña
+{%- when 47 -%}puerta
+{%- when 48 -%}ruinas
+{%- when 49 -%}playa
+{%- when 50 -%}riesgo
+{%- when 51 -%}avituallamiento
+{%- when 52 -%}castillo
+{%- when 53 -%}camino sin salida
+{%- when 54 -%}cueva
+{%- when 55 -%}mina
+{%- when 56 -%}arquitectura religiosa
+{%- when 57 -%}punto de observación de aves
+{%- when 58 -%}patrimonio de la humanidad
+{%- when 59 -%}museo
+{%- when 60 -%}balneario
+{%- when 61 -%}edificio de interés
+{%- when 62 -%}parada de tren
+{%- when 63 -%}parada de autobús
+{%- when 64 -%}metro
+{%- when 65 -%}ferry
+{%- when 66 -%}instalación deportiva
+{%- when 67 -%}túnel
+{%- when 68 -%}observación de fauna salvaje
+{%- when "sin especificar" -%}00
+{%- when "senderismo" -%}01
+{%- when "mtb" -%}02
+{%- when "motociclismo" -%}03
+{%- when "alpinismo" -%}04
+{%- when "carrera" -%}05
+{%- when "avión" -%}06
+{%- when "ciclismo" -%}07
+{%- when "moto de trail" -%}08
+{%- when "a pie" -%}09
+{%- when "tren" -%}10
+{%- when "cicloturismo" -%}11
+{%- when "carrera de montaña" -%}12
+{%- when "coche" -%}13
+{%- when "moto de trial" -%}14
+{%- when "moto de enduro" -%}15
+{%- when "natación" -%}16
+{%- when "orientación" -%}17
+{%- when "triatlon" -%}18
+{%- when "carrera descalzo" -%}19
+{%- when "canicross" -%}20
+{%- when "dron" -%}21
+{%- when "bicicleta con remolque" -%}22
+{%- when "bicicleta eléctrica" -%}23
+{%- when "ciclocross" -%}24
+{%- else -%}00
+{%- endcase -%}
+{%- endcapture -%}
+{{ resultado }}

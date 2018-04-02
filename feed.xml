@@ -1,0 +1,58 @@
+---
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xml:lang="es">
+  <generator uri="https://jekyllrb.com/" version="{{ jekyll.version }}">Jekyll</generator>
+  <link href="{{ page.url | absolute_url }}" rel="self" type="application/atom+xml" />
+  <link href="{{ '/' | absolute_url }}" rel="alternate" type="text/html" hreflang="es" />
+  <updated>{{ site.time | date_to_xmlschema }}</updated>
+  <id>{{ '/' | absolute_url }}</id>
+  <title>{{ site.title | xml_escape }}</title>
+  <subtitle>{{ site.description | strip | xml_escape }}</subtitle>
+  <icon>{{ "/iconos/feedicon.png" | prepend: site.imagenes | absolute_url }}</icon>
+  <rights>©{{ site.time | date: "%Y" }} {{ site.author | xml_escape }}</rights>
+  <author>
+    <name>{{ site.author | xml_escape }}</name>
+    <email>{{ site.email | xml_escape }}</email>
+    <uri>https://twitter.com/{{ site.twitter.personal }}</uri>
+  </author>
+  {%- assign posts = site.posts | where_exp: "post", "post.draft != true" -%}
+  {%- for p in posts %}
+  <entry>
+   <title>{{ p.title | xml_escape }}</title>
+   <link href="{{ p.url | absolute_url }}" rel="alternate" type="text/html" title="{{ p.title | xml_escape }}" />
+   <published>{{ p.date | date_to_xmlschema }}</published>
+   <updated>{% if p.updated %}{{ p.updated | date_to_xmlschema }}{% else %}{{ p.date | date_to_xmlschema }}{% endif %}</updated>
+   <id>{{ p.id | absolute_url | xml_escape }}</id>
+   <category term="{{ p.category | xml_escape }}"/>
+   <summary>{{ p.excerpt | xml_escape }}</summary>
+   {%- if p.layout == "ruta" %}
+   <content type="html">        
+    {%- assign horas = p.cantidades.duracion | divided_by: 60 -%}
+    {%- assign minutos = p.cantidades.duracion | modulo: 60 -%}
+    {%- assign movhoras = p.cantidades.enmovimiento | divided_by: 60 -%}
+    {%- assign movminutos = p.cantidades.enmovimiento | modulo: 60 -%}
+    {%- capture horas_total -%}
+      {% if horas <= 0 %}{% elsif horas == 1 %}una hora {% else %}{{ horas }} horas {% endif %}
+      {% if horas > 0 and minutos > 0 %}y {% endif %}  
+      {% if minutos <= 0 %}{% elsif minutos == 1 %} un minuto{% else %} {{minutos}} minutos{% endif %}
+    {%- endcapture -%}
+    {%- capture horas_mov -%}
+      {% if movhoras <= 0 %}{% elsif movhoras == 1 %}una hora {% else %}{{ movhoras }} horas {% endif %}
+      {% if movhoras > 0 and movminutos > 0 %}y {% endif %}  
+      {% if movminutos <= 0 %}{% elsif movminutos == 1 %} un minuto{% else %} {{movminutos}} minutos{% endif %}
+    {%- endcapture -%}
+    {%- capture detalles -%}
+      <p>En esta ruta {% if p.cantidades.circularpunto %}circular {% elsif p.cantidades.circularlocalidad %}que empieza y acaba en la misma localidad {% endif %}{% if p.cantidades.ibp %}con un IPB de {{ p.cantidades.ibp }} puntos {% endif %}hic{% if p.gente %}imos{% else %}e{% endif %} un total de {{ p.cantidades.distancia | divided_by: 1000 }} kilómetros. Aunque tard{% if p.gente %}amos{% else %}é{% endif %} en acabarla {{ horas_total }} en realidad sólo estuv{% if p.gente %}imos{% else %}e{% endif %} en marcha {{ horas_mov }}.</p>
+      <p>Sub{% if p.gente %}imos{% else %}í{% endif %} {{ p.cantidades.ascenso }} metros llegando a un techo de {{ p.cantidades.cima }} metros y baj{% if p.gente %}amos{% else %}é{% endif %} {% if p.cantidades.circularpunto %}los mismos que sub{% if p.gente %}imos{% else %}í{% endif %} —la ruta era circular—{% else %}{{p.cantidades.descenso}} metros{% endif %}.</p>
+      {% if p.gente %}<p>Tuve el gusto de compartir el día con {{ p.gente | array_to_sentence_string: "y" }}.</p>{% endif %}
+      {% if p.tags.size > 0 %}<p>Y pas{% if p.gente %}amos{% else %}é{% endif %} por las localidades de {{ p.tags | array_to_sentence_string: 'y por' }}.</p>{%endif %}
+      <p>Si quieres leer la crónica de la ruta de {{ p.category }} que hic{% if p.gente %}imos{% else %}e{% endif %} el {% include mi-fecha.html in=p.date %}, ver las fotos, el itinerario o bajarte el track, ve a <a href="{{p.url | absolute_url }}">la web</a>.</p>
+    {%- endcapture -%}
+    {{- detalles | normalize_whitespace | xml_escape -}}
+   </content>
+  {%- endif %}
+  <media:thumbnail url="{{ p.slug | append: "/destacada.jpg" | absolute_url }}" />
+  </entry>
+{%- endfor %}
+</feed>

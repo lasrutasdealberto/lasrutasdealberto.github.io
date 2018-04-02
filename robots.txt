@@ -1,0 +1,7 @@
+---
+---
+User-agent: *
+Disallow: main.js
+Disallow: main.css
+
+sitemap: {{ "/sitemap.xml" | absolute_url }}

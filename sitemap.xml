@@ -1,0 +1,55 @@
+---
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  {%- assign posts = site.posts | where_exp: "post", "post.draft != true" -%}
+  {%- for p in posts %}
+  <url>
+    <loc>{{ p.url | absolute_url }}</loc>
+    <lastmod>{{ p.updated | default: p.date | date_to_xmlschema }}</lastmod>
+    <image:image>
+      <image:loc>{{ p.url | absolute_url | xml_escape }}destacada.jpg</image:loc>
+      <image:title>Imagen destacada de {{ p.title | xml_escape }}</image:title>
+    </image:image>
+   {%- for i in p.fotos %}
+    <image:image>
+      <image:loc>{{ p.url | absolute_url }}{{i}}</image:loc>
+      <image:title>{{ p.title | xml_escape }}</image:title>
+    </image:image>
+   {%- endfor -%}
+   {%- for w in p.waypoints %}{% for i in w.fotos %}
+    <image:image>
+      <image:loc>{{ p.url | absolute_url }}{{i}}</image:loc>
+      <image:title>{{ w.nombre | xml_escape }}</image:title>
+    </image:image>
+   {%- endfor %}{% endfor %}
+   {%- for i in p.imagenes %}
+    <image:image>
+      <image:loc>{{ p.url | absolute_url }}{{ i.fichero }}</image:loc>
+      <image:caption>{{ i.pie | xml_escape }}</image:caption>
+    </image:image>
+   {%- endfor %}
+  </url>
+  {%- endfor %}
+  {%- assign pages = site.html_pages | where_exp:'doc','doc.url != "/404.html"' %}
+  {%- for page in pages %}
+  <url>
+    <loc>{{ page.url | absolute_url | xml_escape }}</loc>
+      {%- if page.layout == "index" %}<lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
+      {%- elsif page.updated %}<lastmod>{{ page.updated | date_to_xmlschema }}</lastmod>
+      {%- endif %}
+      {%- unless page.layout == "index" %}
+    <image:image>
+      <image:loc>{{ page.url | absolute_url }}destacada.jpg</image:loc>
+      <image:title>Imagen destacada de {{ page.title | xml_escape }}</image:title>
+    </image:image>
+      {%- endunless %}
+     {%- for i in page.imagenes %}
+    <image:image>
+      <image:loc>{{ page.url | absolute_url }}{{ i.fichero }}</image:loc>
+      <image:caption>{{ i.pie }}</image:caption>
+    </image:image>
+   {%- endfor %}
+  </url>
+  {%- endfor %}
+</urlset>

@@ -1,0 +1,78 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely need to edit after that.
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'jekyll serve'. If you change this file, please restart the server process.
+
+# Site settings
+
+title: Las Rutas de Alberto
+email: alberto@lasrutasdealberto.es
+author: Alberto Domínguez
+description: >
+  En este íntimo rincón de internet publico mis cuadernos de viajes, generalmente
+  en bici. A veces sólo, a veces acompañado, pero siempre con ganas de descubrir
+  nuevos lugares.
+
+fb:
+  app-id: WTF
+  page-url: WTF
+  page-title: WTF
+
+twitter:
+  project: LasRutasAlberto
+  personal: aldolo
+
+facebook:
+  project: LasRutasDeAlberto
+  personal: aldolo
+
+imagenes: "/imagenes"
+
+baseurl: ""
+url: "http://lasrutasdealberto.es"
+
+
+# Build settings
+markdown: kramdown
+permalink: /:title/
+paginate: 6
+paginate_path: /page:num/
+
+google:
+  analytics: UA-116505866-1
+  apikey: AIzaSyBRwMAB0JqKaxOvuIRsdkfOt4KgVpxxH4g
+
+exclude:
+  - cauces-hacia-aragon-1/big-*.jpg
+  - cauces-hacia-aragon-2/big-*.jpg
+  - cauces-hacia-aragon-3/big-*.jpg
+  - cauces-hacia-aragon-4/big-*.jpg
+  - base-militar-de-el-toro/big-*.jpg
+  - las-tres-provincias/big-*.jpg
+  - de-requena-a-campillo-siguiendo-el-tren/big-*.jpg
+  - forata-la-chufa-el-oro-y-dos-aguas/big-*.jpg
+  - rutas-cicloconquenses-1/big-*.jpg
+  - rutas-cicloconquenses-2/big-*.jpg
+  - marcha-avapace-2014/big-*.jpg
+  
+kramdown:
+  auto_ids: false
+
+# Comments
+#disqus-shortname: WTF
+
+# Sass style
+sass:
+  style: nested
+
+# Ruby Gems
+plugins:
+ - jekyll-paginate
+
+ # TODO:
+ # En 2016-01-31-las-tres-provincias.md rellenar la referencia a la ruta por ayodar
+ # En 2015-05-07-de-requena-a-campillo-siguiendo-el-tren.md cambiar las referencias a wikiloc por referencias propias
+ # En 2014-08-03-rutas-cicloconquenses-2.md cambiar el enlace 6 a mi propia web
+ 
