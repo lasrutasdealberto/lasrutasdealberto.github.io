@@ -28,6 +28,7 @@
   {%- else %}
   <title>{{ site.title | xml_escape }}</title>
   {%- endif %}
+  <meta property="og:type" content="website" />
   <meta property="og:title" content="{{ site.title | xml_escape }}" />
   <meta property="og:url" content="{{ "/" | absolute_url }}" />
   <meta property="og:description" content="{{ site.description | escape | strip }}" />
@@ -37,7 +38,6 @@
   <meta property="og:image:height" content="630" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:alt" content="Imagen predeterminada de la web" />
-  <meta property="og:type" content="website" />
   {%- if paginator.previous_page_path %}
   <link rel="prev" href="{{ paginator.previous_page_path | relative_url }}" />
   {%- endif %}
@@ -51,16 +51,6 @@
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | absolute_url }}" />
 {%- else %}
   <title>{{ page.title | escape }} | {{ site.title }}</title>
-  <meta property="og:title" content="{{ page.title | escape }}" />
-  <meta property="og:url" content="{{ page.url | absolute_url }}" />
-  <meta property="og:description" content="{{ page.excerpt | escape | strip }}" />
-  <meta name="description" content="{{ page.excerpt | escape | strip }}" />
-  <meta property="og:image" content="{{ page.url | append: "facebook.jpg" | absolute_url }}" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:image:type" content="image/jpeg" />
-  <meta property="og:image:alt" content="Imagen destacada de la página" />
-  {{- metatagscomunes }}
   {%- if page.layout == "ruta"%}
   <meta property="og:type" content="fitness.course" />
     {%- if page.cantidades.distancia %}
@@ -82,6 +72,16 @@
   <meta property="article:published_time" content="{{ page.updated | default: page.date | default: site.time | date_to_xmlschema }}" />
   <meta property="article:publisher" content="https://www.facebook.com/{{ site.facebook.project }}/" />    
   {%- endif %}
+  <meta property="og:title" content="{{ page.title | escape }}" />
+  <meta property="og:url" content="{{ page.url | absolute_url }}" />
+  <meta property="og:description" content="{{ page.excerpt | escape | strip }}" />
+  <meta name="description" content="{{ page.excerpt | escape | strip }}" />
+  <meta property="og:image" content="{{ page.url | append: "facebook.jpg" | absolute_url }}" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:alt" content="Imagen destacada de la página" />
+  {{- metatagscomunes }}
   {%- if page.previous.url %}
   <link rel="prev" href="{{ page.previous.url | relative_url }}" />
   {%- endif %}
