@@ -1,4 +1,4 @@
-<head>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# fitness: http://ogp.me/ns/fitness#">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="apple-touch-icon" sizes="180x180" href="{{ site.imagenes | append: "/iconos/apple-touch-icon.png" | relative_url }}" />
@@ -14,7 +14,7 @@
 {%- capture metatagscomunes %}
   <meta property="og:rich_attachment" content="true" />
   <meta property="og:site_name" content="{{ site.title | xml_escape }}" />
-  <!--<meta property="fb:app_id" content="ni idea, la verdad" />-->
+  <meta property="fb:app_id" content="{{ site.facebook.id }}" />
   <meta property="og:locale" content="es_ES" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@{{ site.twitter.project }}" />

@@ -533,9 +533,16 @@ body.index {
       p {
         clear: both;
       }
-      div:last-child{
-        margin-bottom: 1rem;
-        text-align:center;
+      h4 a {
+        color: rgb(0, 128, 0);
+        &:hover {
+          text-decoration: none;
+          background-color: rgb(245, 255, 245);
+          box-shadow: 0 0 3px 0 rgb(245, 255, 245);
+        }
+        &:visited {
+          color: rgb(0, 128 * 0.8, 0);
+        }
       }
     }
   }  

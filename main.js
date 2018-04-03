@@ -42,21 +42,43 @@ function reordenarElementos(){
 
 /* Para el ajax de cargar el índice suponemos siempre que estamos en la primera página */
 /* En otra página se mostrará el pagination y no habrá botón con el evento */
-var actualPage = 1;
-var lastPage = 0; // Esta variable se actualizará cada vez que se le de al botón de cargar
+var actualPage = 1; // Esta variable se actualizará cada vez que se le de al botón de cargar
+var lastPage = 0;
 
 function loadIndexByAjax(){
+  // Si no estamos en la primera página de índice no hacemos nada
   lastPage = $('body.index div.fila').data('last');
-  var boton = $('body.index #ajax-load button');
-  boton.on('click', function(event){
+  if (lastPage === undefined) { console.log('No es la primera página de índice'); return; }
+  
+  // Sacamos la última página vista. Si no hay, será la primera.
+  var visto = sessionStorage.getItem('visto');
+  if (visto === null) { visto = 1; console.log('No habia ninguna sessionstorage. Visto = 1'); }
+  else { visto = parseInt(visto); console.log('Si habia sessionstorage. Visto = ' + visto); }
+  
+  // Cargamos hasta la última página vista sin florituras
+  for (var cont = 2; cont <= visto && cont <= lastPage; cont += 1){
+    console.log('Estamos en el for de carga preliminar. Cont = ' + cont);
+    $.get('page' + cont, function(data){
+      var aux = $(data).find('div.fila');
+      aux.insertBefore('body.index #ajax-load');
+    });
+    actualPage += 1;
+  } console.log('Salimos del bucle preliminar con un actualPage = ' + actualPage + '. Aquí no es necesario actualizar el sessionstorage');
+  
+  // Si hemos llegado a la última página deshabilitamos el botón
+  if (actualPage >= lastPage) {$('body.index #ajax-load button').attr('disabled', 'disabled').text('No quedan más rutas que mostrar'); console.log('Deshabilitamos el boton antes de ponerle el listener'); return; }
+  
+  // Si quedan más, ponemos el listener y cargamos los divs con florituras
+  $('body.index #ajax-load button').on('click', function(event){
     console.log('Ahora mismo estamos en la pagina ' + actualPage + ' de ' + lastPage);
     console.log('Vamos a hacer el load');
     actualPage += 1;
-    var w = $.get('page' + actualPage, function(data){
+    $.get('page' + actualPage, function(data){
       var aux = $(data).find('div.fila');
       aux.hide();
       aux.insertBefore('body.index #ajax-load');
-      if (actualPage >= lastPage) $('body.index #ajax-load button').attr('disabled', 'disabled').text('Has llegado al final');
+      sessionStorage.setItem('visto', actualPage);
+      if (actualPage >= lastPage) {$('body.index #ajax-load button').attr('disabled', 'disabled').text('Has llegado al final');console.log('Deshabilitamos el boton despues de ponerle el listener');}
       aux.slideDown('slow');
     });
   });

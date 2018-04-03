@@ -9,11 +9,11 @@ layout: default
       {% capture codigoactividad %}{% include mis-categorias.html in=actividadminusculas %}{% endcapture %}
       <img src="{{ site.imagenes | append: "/pictogramas/" | append: codigoactividad | append: ".png" | relative_url }}" alt="{{ post.category | capitalize | xml_escape }}" />
       <h6>{{ post.category | capitalize | xml_escape }}</h6>
-      <h4>{{ post.title | xml_escape }}</h4>
+      <h4><a href="{{ post.url | relative_url }}">{{ post.title | xml_escape }}</a></h4>
       {% capture fecha %}{% include mi-fecha.html in=post.date %}{% endcapture %}
       <h6>{{ fecha | capitalize | xml_escape }}</h6>
       <p>{{ post.excerpt | strip_html | xml_escape }}</p>
-      <div><a href="{{ post.url | relative_url }}" class="boton-verde">Ver crónica</a></div>
+      <!--<div><a href="{{ post.url | relative_url }}" class="boton-verde">Ver crónica</a></div>-->
     </article>
   {% endfor %}
 </div>
