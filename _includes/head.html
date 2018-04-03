@@ -38,10 +38,10 @@
   <meta property="og:image:height" content="630" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:alt" content="Imagen predeterminada de la web" />
-  {%- if paginator.previous_page_path %}
+  {%- if paginator.previous_page_path and paginator.page > 1 %}
   <link rel="prev" href="{{ paginator.previous_page_path | relative_url }}" />
   {%- endif %}
-  {%- if paginator.next_page_path %}
+  {%- if paginator.next_page_path and paginator.page > 1 %}
   <link rel="next" href="{{ paginator.next_page_path | relative_url }}" />
   {%- endif %}
   <link rel="canonical" href="{{ "/" | absolute_url }}" />
@@ -51,28 +51,11 @@
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | absolute_url }}" />
 {%- else %}
   <title>{{ page.title | escape }} | {{ site.title }}</title>
-  {%- if page.layout == "ruta"%}
-  <meta property="og:type" content="fitness.bikes" />
-    {%- if page.cantidades.distancia %}
-  <meta property="fitness:distance:value" content="{{ page.cantidades.distancia }}.0" />
-  <meta property="fitness:distance:units" content="m" />
-    {%- endif %}
-    {%- if page.cantidades.duracion %}
-  <meta property="fitness:duration:value" content="{{ page.cantidades.duracion | times: 60 }}.0" />
-  <meta property="fitness:duration:units" content="s" />
-    {%- endif %}
-    {%- if page.cantidades.distancia and page.cantidades.duracion %}
-    {%- assign segundos = page.cantidades.duracion | times: 60.0 %}
-  <meta property="fitness:speed:value" content="{{ page.cantidades.distancia | divided_by: segundos }}" /> 
-  <meta property="fitness:speed:units" content="m/s" />
-    {%- endif %}
-  {%- else %}
   <meta property="og:type" content="article" />
   <meta property="article:author" content="https://www.facebook.com/{{ site.facebook.personal }}" />
   <meta property="article:published_time" content="{{ page.updated | default: page.date | default: site.time | date_to_xmlschema }}" />
   <meta property="article:publisher" content="https://www.facebook.com/{{ site.facebook.project }}/" />    
-  {%- endif %}
-  <meta property="og:title" content="{{ page.title | escape }}" />
+  <meta property="og:title" content="{{ page.title | xml_escape }}" />
   <meta property="og:url" content="{{ page.url | absolute_url }}" />
   <meta property="og:description" content="{{ page.excerpt | escape | strip }}" />
   <meta name="description" content="{{ page.excerpt | escape | strip }}" />
