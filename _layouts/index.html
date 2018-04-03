@@ -4,7 +4,7 @@ layout: default
 <div class="fila"{% if paginator.page == 1 %} data-last="{{ paginator.total_pages }}"{% endif %}>
   {% for post in paginator.posts %}
     <article>
-      <img src="{{ post.slug | prepend: "/" | append: "/destacada.jpg" | relative_url }}" alt="{{ post.title | xml_escape }}" />
+      <img src="{{ post.slug | prepend: "/" | append: "/destacada-index.jpg" | relative_url }}" alt="{{ post.title | xml_escape }}" />
       {% capture actividadminusculas %}{{ post.category | downcase }}{% endcapture %}
       {% capture codigoactividad %}{% include mis-categorias.html in=actividadminusculas %}{% endcapture %}
       <img src="{{ site.imagenes | append: "/pictogramas/" | append: codigoactividad | append: ".png" | relative_url }}" alt="{{ post.category | capitalize | xml_escape }}" />
