@@ -40,46 +40,55 @@ function reordenarElementos(){
   mMedia.addListener(listenerReordenarElementos);
 }
 
+function getVisto() {
+  var ca = document.cookie.split(';');
+  for(var i=0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0)==' ') c = c.substring(1, c.length);
+    if (c.indexOf('visto=') == 0) return parseInt(c.substring('visto='.length, c.length));
+  }
+  return 1;
+}
+
 /* Para el ajax de cargar el índice suponemos siempre que estamos en la primera página */
 /* En otra página se mostrará el pagination y no habrá botón con el evento */
 var actualPage = 1; // Esta variable se actualizará cada vez que se le de al botón de cargar
 var lastPage = 0;
 
 function loadIndexByAjax(){
+  //console.log(document.cookie);
+  //document.cookie = "username=Mininova";
   // Si no estamos en la primera página de índice no hacemos nada
   lastPage = $('body.index div.fila').data('last');
-  if (lastPage === undefined) { console.log('No es la primera página de índice'); return; }
+  if (lastPage === undefined) return;
   
   // Sacamos la última página vista. Si no hay, será la primera.
-  var visto = sessionStorage.getItem('visto');
-  if (visto === null) { visto = 1; console.log('No habia ninguna sessionstorage. Visto = 1'); }
-  else { visto = parseInt(visto); console.log('Si habia sessionstorage. Visto = ' + visto); }
+  var visto = getVisto();
   
   // Cargamos hasta la última página vista sin florituras
   for (var cont = 2; cont <= visto && cont <= lastPage; cont += 1){
-    console.log('Estamos en el for de carga preliminar. Cont = ' + cont);
     $.get('page' + cont, function(data){
-      var aux = $(data).find('div.fila');
-      aux.insertBefore('body.index #ajax-load');
+      $(data).find('div.fila article').appendTo('div.fila');
     });
     actualPage += 1;
-  } console.log('Salimos del bucle preliminar con un actualPage = ' + actualPage + '. Aquí no es necesario actualizar el sessionstorage');
+  }
   
   // Si hemos llegado a la última página deshabilitamos el botón
-  if (actualPage >= lastPage) {$('body.index #ajax-load button').attr('disabled', 'disabled').text('No quedan más rutas que mostrar'); console.log('Deshabilitamos el boton antes de ponerle el listener'); return; }
+  if (actualPage >= lastPage){
+    $('body.index #ajax-load button').attr('disabled', 'disabled').text('No quedan más rutas que mostrar');
+    return;
+  }
   
-  // Si quedan más, ponemos el listener y cargamos los divs con florituras
+  // Si quedan más, ponemos el listener para cargar los articles con florituras
   $('body.index #ajax-load button').on('click', function(event){
-    console.log('Ahora mismo estamos en la pagina ' + actualPage + ' de ' + lastPage);
-    console.log('Vamos a hacer el load');
     actualPage += 1;
     $.get('page' + actualPage, function(data){
-      var aux = $(data).find('div.fila');
+      var aux = $(data).find('div.fila article');
       aux.hide();
-      aux.insertBefore('body.index #ajax-load');
-      sessionStorage.setItem('visto', actualPage);
-      if (actualPage >= lastPage) {$('body.index #ajax-load button').attr('disabled', 'disabled').text('Has llegado al final');console.log('Deshabilitamos el boton despues de ponerle el listener');}
-      aux.slideDown('slow');
+      aux.appendTo('div.fila');
+      document.cookie = 'visto=' + actualPage;
+      if (actualPage >= lastPage) $('body.index #ajax-load button').attr('disabled', 'disabled').text('Has llegado al final');
+      aux.fadeIn(2000);
     });
   });
 }

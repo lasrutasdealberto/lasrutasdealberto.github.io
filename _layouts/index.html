@@ -3,7 +3,7 @@ layout: default
 ---
 <div class="fila"{% if paginator.page == 1 %} data-last="{{ paginator.total_pages }}"{% endif %}>
   {% for post in paginator.posts %}
-    <article>
+    <article style="order: {{ 6 | times: paginator.page | minus: 6 | plus: forloop.index }}">
       <img src="{{ post.slug | prepend: "/" | append: "/destacada-index.jpg" | relative_url }}" alt="{{ post.title | xml_escape }}" />
       {% capture actividadminusculas %}{{ post.category | downcase }}{% endcapture %}
       {% capture codigoactividad %}{% include mis-categorias.html in=actividadminusculas %}{% endcapture %}
@@ -13,7 +13,6 @@ layout: default
       {% capture fecha %}{% include mi-fecha.html in=post.date %}{% endcapture %}
       <h6>{{ fecha | capitalize | xml_escape }}</h6>
       <p>{{ post.excerpt | strip_html | xml_escape }}</p>
-      <!--<div><a href="{{ post.url | relative_url }}" class="boton-verde">Ver crónica</a></div>-->
     </article>
   {% endfor %}
 </div>
