@@ -41,18 +41,25 @@ google:
   apikey: AIzaSyBRwMAB0JqKaxOvuIRsdkfOt4KgVpxxH4g
 
 exclude:
+  - actividades/big-*.jpg
+  - base-militar-de-el-toro/big-*.jpg
+  - calles-a-benageber/big-*.jpg
   - cauces-hacia-aragon-1/big-*.jpg
   - cauces-hacia-aragon-2/big-*.jpg
   - cauces-hacia-aragon-3/big-*.jpg
   - cauces-hacia-aragon-4/big-*.jpg
-  - base-militar-de-el-toro/big-*.jpg
-  - las-tres-provincias/big-*.jpg
+  - companeros/big-*.jpg
   - de-requena-a-campillo-siguiendo-el-tren/big-*.jpg
+  - ebo-gallinera-y-llacuna/big-*.jpg
   - forata-la-chufa-el-oro-y-dos-aguas/big-*.jpg
+  - imagenes/big-*.jpg
+  - las-tres-provincias/big-*.jpg
+  - lugares/big-*.jpg
+  - marcha-avapace-2014/big-*.jpg
+  - proyecto/big-*.jpg
+  - requena-y-utiel-por-negrete-y-nogueras/big-*.jpg
   - rutas-cicloconquenses-1/big-*.jpg
   - rutas-cicloconquenses-2/big-*.jpg
-  - marcha-avapace-2014/big-*.jpg
-  - requena-y-utiel-por-negrete-y-nogueras/big-*.jpg
   
 kramdown:
   auto_ids: false
