@@ -26,6 +26,14 @@
   }
 }
 
+a {
+  color: rgb(0, 128, 0);
+}
+
+.dropdown-item.active, .dropdown-item:active {
+  background-color: rgb(0, 128, 0);
+}
+
 .list-group {
   display: flex;
   flex-direction: column;

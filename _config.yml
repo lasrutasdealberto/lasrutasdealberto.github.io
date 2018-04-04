@@ -52,6 +52,7 @@ exclude:
   - rutas-cicloconquenses-1/big-*.jpg
   - rutas-cicloconquenses-2/big-*.jpg
   - marcha-avapace-2014/big-*.jpg
+  - requena-y-utiel-por-negrete-y-nogueras/big-*.jpg
   
 kramdown:
   auto_ids: false
