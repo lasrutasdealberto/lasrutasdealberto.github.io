@@ -42,17 +42,23 @@ google:
 
 exclude:
   - actividades/big-*.jpg
+  - a-la-aventura-bunol-portera-requena-siete-aguas/big-*.jpg
+  - al-monduber-con-la-flaca/big-*.jpg
   - base-militar-de-el-toro/big-*.jpg
   - calles-a-benageber/big-*.jpg
   - cauces-hacia-aragon-1/big-*.jpg
   - cauces-hacia-aragon-2/big-*.jpg
   - cauces-hacia-aragon-3/big-*.jpg
   - cauces-hacia-aragon-4/big-*.jpg
+  - caudiel-montanejos-villahermosa-puertomingalvo/big-*.jpg
   - companeros/big-*.jpg
+  - con-el-comando-patraix-a-quart-de-les-valls/big-*.jpg
   - de-requena-a-campillo-siguiendo-el-tren/big-*.jpg
   - ebo-gallinera-y-llacuna/big-*.jpg
+  - el-portillo-de-bunol-con-un-viento-del-demonio/big-*.jpg
   - forata-la-chufa-el-oro-y-dos-aguas/big-*.jpg
   - imagenes/big-*.jpg
+  - inaugurando-albergue-rodamons-marines/big-*.jpg
   - las-tres-provincias/big-*.jpg
   - lugares/big-*.jpg
   - marcha-avapace-2014/big-*.jpg
@@ -60,7 +66,7 @@ exclude:
   - requena-y-utiel-por-negrete-y-nogueras/big-*.jpg
   - rutas-cicloconquenses-1/big-*.jpg
   - rutas-cicloconquenses-2/big-*.jpg
-  
+
 kramdown:
   auto_ids: false
 

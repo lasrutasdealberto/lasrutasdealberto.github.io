@@ -64,7 +64,6 @@ fotos:
   - 7739034.jpg
   - 7739073.jpg
   - 7739074.jpg
-gente:
 waypoints:
   - nombre: Viaducto de Mira
     tipo: 39

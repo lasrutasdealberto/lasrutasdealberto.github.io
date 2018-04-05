@@ -56,8 +56,6 @@ var actualPage = 1; // Esta variable se actualizará cada vez que se le de al bo
 var lastPage = 0;
 
 function loadIndexByAjax(){
-  //console.log(document.cookie);
-  //document.cookie = "username=Mininova";
   // Si no estamos en la primera página de índice no hacemos nada
   lastPage = $('body.index div.fila').data('last');
   if (lastPage === undefined) return;

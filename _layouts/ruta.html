@@ -85,7 +85,7 @@ layout: default
         </section>
       {% endif %}
 
-      {% if nfotos > 0 or nwfotos > 0 %}
+      {% if nfotostotal > 0 %}
         {% assign slideto = 0 %}
         <section id="photo-thumbs">
         <h4>Fotos de la ruta</h4>
@@ -142,7 +142,7 @@ layout: default
       {{ content }}
       </section>
 
-      {% if nfotos > 0 %}
+      {% if nfotostotal > 0 %}
         <section id="visor">
         <h4>Visor</h4>
         {% assign orden = 1 %}
@@ -161,7 +161,7 @@ layout: default
             {% capture tipowaypoint %}{% include mis-categorias.html in=w.tipo %}{% endcapture %}
             {% capture iconowaypoint %}{{ w.tipo | prepend: "00" | slice: -2, 2 | append: ".png" | prepend: "/pictogramas/" | prepend: site.imagenes | relative_url }}{% endcapture %}
             {% for wp in w.fotos %}
-              <div class="carousel-item{% if orden == 0 %} active{% endif %}">
+              <div class="carousel-item{% if orden <= 1 %} active{% endif %}">
                 <img {% if orden > 2 and orden < nfotostotal %}src="{{ site.imagenes | append: "/transparent.png" | relative_url }}" data-{% endif %}src="{{ wp }}" alt="Foto {{forloop.index}} de {{ w.nombre | escape }}" />
                 <div class="carousel-caption">
                   <p><img src="{{ iconowaypoint }}" alt="{{ tipowaypoint | capitalize }}" /><span>{{ w.nombre | escape }} ({{forloop.index}})</span></p>

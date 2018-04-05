@@ -51,7 +51,6 @@ fotos:
   - 10255340.jpg
   - 10255343.jpg
   - 10255355.jpg
-gente:
 waypoints:
   - nombre: Saliendo de Pego
     tipo: 42
