@@ -43,6 +43,7 @@ google:
 exclude:
   - actividades/big-*.jpg
   - a-la-aventura-bunol-portera-requena-siete-aguas/big-*.jpg
+  - almonacid-matet-y-gaibiel/big-*.jpg
   - al-monduber-con-la-flaca/big-*.jpg
   - base-militar-de-el-toro/big-*.jpg
   - calles-a-benageber/big-*.jpg
@@ -55,6 +56,7 @@ exclude:
   - con-el-comando-patraix-a-quart-de-les-valls/big-*.jpg
   - de-requena-a-campillo-siguiendo-el-tren/big-*.jpg
   - ebo-gallinera-y-llacuna/big-*.jpg
+  - el-frio-llego-barracas-pina/big-*.jpg
   - el-portillo-de-bunol-con-un-viento-del-demonio/big-*.jpg
   - estrenando-bici-por-la-albufera/big-*.jpg
   - forata-la-chufa-el-oro-y-dos-aguas/big-*.jpg
@@ -64,10 +66,12 @@ exclude:
   - las-tres-provincias/big-*.jpg
   - lugares/big-*.jpg
   - marcha-avapace-2014/big-*.jpg
+  - marcha-cicloturista-comunidad-valenciana-2016/big-*.jpg
   - proyecto/big-*.jpg
   - requena-y-utiel-por-negrete-y-nogueras/big-*.jpg
   - rutas-cicloconquenses-1/big-*.jpg
   - rutas-cicloconquenses-2/big-*.jpg
+  - viajando/big-*.jpg
 
 kramdown:
   auto_ids: false
