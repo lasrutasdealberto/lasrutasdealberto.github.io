@@ -47,6 +47,8 @@ fotos:
   - 6878748.jpg
 gente:
   - Comando Patraix
+  - Patricio
+  - Lázaro
 pausas:
   - lat: 39.608282
     lon: -0.313789

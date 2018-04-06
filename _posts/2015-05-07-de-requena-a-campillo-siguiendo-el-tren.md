@@ -21,8 +21,8 @@ tags:
   - Yémeda
   - Paracuellos
   - Campillo de Altobuey
-title: Siguiendo la pista a los viaductos del ferrocarril Utiel-Cuenca
-excerpt: Me voy a Campillo en bici, pero voy por la carretera de Mira intentando ver a lo lejos los viaductos del ferrocarril Utiel-Cuenca
+title: Siguiendo la pista a los viaductos del ferrocarril Utiel-Cuenca.
+excerpt: Me voy a Campillo en bici, pero voy por la carretera de Mira intentando ver a lo lejos los viaductos del ferrocarril Utiel-Cuenca.
 wikiloc: 12593149
 googlephotos: RtGuyO0bDMcAXlIO2
 cantidades:
