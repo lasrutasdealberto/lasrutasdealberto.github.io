@@ -1,6 +1,6 @@
 ---
-layout: page
-excerpt: Política de privacidad para mostrar en facebook
+layout: default
+excerpt: Política de privacidad
 title: Política de privacidad
 ---
 La presente Política de Privacidad establece los términos en que Las Rutas de Alberto usa y protege la información que es proporcionada por sus usuarios al momento de utilizar su sitio web. Esta compañía está comprometida con la seguridad de los datos de sus usuarios. Cuando le pedimos llenar los campos de información personal con la cual usted pueda ser identificado, lo hacemos asegurando que sólo se empleará de acuerdo con los términos de este documento. Sin embargo esta Política de Privacidad puede cambiar con el tiempo o ser actualizada por lo que le recomendamos y enfatizamos revisar continuamente esta página para asegurarse que está de acuerdo con dichos cambios.

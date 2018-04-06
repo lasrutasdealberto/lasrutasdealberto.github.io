@@ -1,7 +1,7 @@
 ---
 excerpt: Las condiciones del servicio de la página de facebook
 title: Condiciones del servicio
-layout: page
+layout: default
 ---
 Bla bla bla.
 
