@@ -556,7 +556,7 @@ body.index {
   }  
 }
 
-body.ruta, body.actividades, body.companeros, body.lugares, body.page, body.mapa {
+body.ruta, body.actividades, body.companeros, body.lugares, body.page {
   .fila {
     @include md {
       margin-right: -15px;
@@ -918,7 +918,7 @@ body.error-404 main > * {
   text-align: center;
 }
 
-body.ruta .gcontrol {
+body.ruta .gcontrol, body.mapa .gcontrol {
   background-color: #fff;
   border: 2px solid #fff;
   border-radius: 3px;
@@ -934,5 +934,20 @@ body.ruta .gcontrol {
   }
   > div {
     text-align: left;
+  }
+}
+
+body.mapa {
+  main {
+    max-width: 100%;
+  }
+  #global-map-canvas{
+    height: 90vh;
+  }
+  #inforuta {
+  max-width: 200px;
+    img, div {
+      max-width: 100%;
+    }
   }
 }

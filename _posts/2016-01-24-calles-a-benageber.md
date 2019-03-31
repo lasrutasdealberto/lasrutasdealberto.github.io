@@ -1,7 +1,7 @@
 ---
 updated: 2018-04-04
 layout: ruta
-category: MTB
+category: mtb
 tags:
   - Calles
   - Benagéber

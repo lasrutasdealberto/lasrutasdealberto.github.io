@@ -1,0 +1,127 @@
+---
+---
+<!doctype html>
+<html>
+<head>
+<meta charset=""utf-8" />
+<title>Control de errores frecuentes</title>
+<style>
+strong { color: red; }
+li { margin-bottom: 1em; }
+</style>
+</head>
+<body>
+
+<h1>Control de errores frecuentes</h1>
+
+{% for p in site.posts %}
+
+<h5>{{ forloop.index }} - {{ p.title }} - {{ p.slug }} - {{ p.date }}</h5>
+
+<ul>
+
+<li>
+La última palabra del extract lleva punto:<br />{{ p.excerpt | slice: -10, 10 }}
+</li>
+
+<li>
+La categoría está en minúsculas:<br />{{ p.category | default: "<strong>NO</strong>" }}
+</li>
+
+<li>
+Todos los datos técnicos son correctos:<br />
+circularpunto: {{p.cantidades.circularpunto | default: "<strong>NO</strong>"}}<br/>
+circularlocalidad: {{p.cantidades.circularlocalidad | default: "<strong>NO</strong>"}}<br/>
+distancia: {{p.cantidades.distancia | default: "<strong>NO</strong>"}}<br/>
+duracion: {{p.cantidades.duracion | default: "<strong>NO</strong>"}}<br/>
+enmovimiento: {{p.cantidades.enmovimiento | default: "<strong>NO</strong>"}}<br/>
+ascenso: {{p.cantidades.ascenso | default: "<strong>NO</strong>"}}<br/>
+descenso: {{p.cantidades.descenso | default: "<strong>NO</strong>"}}<br/>
+cima: {{p.cantidades.cima | default: "<strong>NO</strong>"}}<br/>
+sima: {{p.cantidades.sima | default: "<strong>NO</strong>"}}<br/>
+ibp: {{p.cantidades.ibp | default: "<strong>NO</strong>"}}
+</li>
+
+<li>
+Llevan puntuaciones:<br />
+estrellas: {{p.puntuacion.estrellas | default: "<strong>NO</strong>"}}<br/>
+pedales: {{p.puntuacion.pedales | default: "<strong>NO</strong>"}}<br/>
+arboles: {{p.puntuacion.arboles | default: "<strong>NO</strong>"}}<br/>
+coches: {{p.puntuacion.coches | default: "<strong>NO</strong>"}}<br/>
+huesos: {{p.puntuacion.huesos | default: "<strong>NO</strong>"}}<br/>
+pedruscos: {{p.puntuacion.pedruscos | default: "<strong>NO</strong>"}}
+</li>
+
+<li>
+Lleva routestring:<br />{{ p.routestring | default: "<strong>NO</strong>" | slice: 0, 10 }}
+</li>
+
+<li>
+Lleva redes:<br />
+Wikiloc: {{ p.wikiloc | default: "<strong>NO</strong>" }}<br />
+Strava: {{ p.strava | default: "<strong>NO</strong>" }}<br />
+Google Photos: {{ p.googlephotos | default: "<strong>NO</strong>" }}
+</li>
+
+<li>
+Lleva ciudades: {{ p.tags | array_to_sentence_string | default: "<strong>NO</strong>"}}
+</li>
+
+<li>
+Lleva elevación: {{ p.altimetria | jsonify | default: "<strong>NO</strong>" | slice: 0, 50 }} - Total {{ p.altimetria | size }}
+</li>
+
+<li>
+{% if p.gente %} Lleva compañeros: {{ p.gente | join: ', '}} - Total: {{ p.gente | size }}
+{% else %}Lleva compañeros: <strong>NO</strong>
+{% endif %}
+</li>
+
+<li>
+{% if p.fotos %}Lleva fotos: {{ p.fotos | join: ", " }} - Total: {{ p.fotos | size }}
+{% else %}Lleva fotos: <strong>NO</strong>
+{% endif %}
+</li>
+
+<li>
+{% if p.waypoints %}Lleva waypoints: {{ p.waypoints | jsonify | slice: 0, 100 }}- Total :{{ p.waypoints | size }}<br />
+  {% for w in p.waypoints %}Nombre: {{w.nombre | default: "<strong>NO</strong>" }} - Tipo: {{w.tipo | default: "<strong>NO</strong>"}}
+  - {% if w.fotos %}{{ w.fotos | join: ", " }} - Total: {{ w.fotos | size }}
+  {% else %}<strong>SIN FOTOS</strong>
+  {% endif %}
+  <br />{% endfor %}
+{% else %}Lleva waypoints: <strong>NO</strong>
+{% endif %}
+</li>
+
+<li>
+{% if p.pausas %}Lleva pausas: {{ p.pausas | jsonify | slice: 0, 50 }} - Total: {{ p.pausas | size }}
+{% else %}Lleva pausas: <strong>NO</strong>
+{% endif %}
+</li>
+
+<li>
+{% if p.otrasjornadas %}Lleva otras jornadas: {{ p.otrasjornadas | join: ", " }} - Total: {{ p.otrasjornadas | size }}
+{% else %}Lleva otras jornadas: <strong>NO</strong>
+{% endif %}
+</li>
+
+<li>
+{% if p.imagenes %}Lleva imágenes: {{ p.imagenes | jsonify | slice: 0, 100 }} - Total: {{ p.imagenes | size }}<br>
+  {% for i in p.imagenes %}Fichero: {{i.fichero | default: "<strong>NO</strong>" }} - Pie: {{i.pie | default: "<strong>NO</strong>"}}<br />{% endfor %}
+{% else %}Lleva imágenes: <strong>NO</strong>
+{% endif %}
+</li>
+
+
+</ul>
+
+{% endfor %}
+
+<p>
+
+
+
+</p>
+<body>
+</html>

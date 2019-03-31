@@ -123,16 +123,16 @@ layout: default
       
       {%- capture altimetria -%}
       {%- if page.altimetria -%}
-      {"n":{{ page.altimetria.size }},"l":{{page.cantidades.distancia}},"lat":[{% for i in page.altimetria %}{{ i.lat }}{% unless forloop.last %},{% endunless %}{% endfor %}],"lon":[{% for i in page.altimetria %}{{ i.lon }}{% unless forloop.last %},{% endunless %}{% endfor %}],"sec":[{% for i in page.altimetria %}{{ i.ele }}{% unless forloop.last %},{% endunless %}{% endfor %}]}
+      {"n":{{ page.altimetria.size }},"l":{{page.cantidades.distancia}},"lat":[{% for i in page.altimetria %}{{ i.lat }}{% unless forloop.last %},{% endunless %}{% endfor %}],"lon":[{% for i in page.altimetria %}{{ i.lon }}{% unless forloop.last %},{% endunless %}{% endfor %}],"ele":[{% for i in page.altimetria %}{{ i.ele }}{% unless forloop.last %},{% endunless %}{% endfor %}]}
       {%- else -%}
       {"n":0,"l":{{ page.cantidades.distancia }},"lat":[],"lon":[],"ele":[]}
       {%- endif -%}
       {%- endcapture -%}
         <section id="map">
           <h4>Mapa</h4>
-          <div id="map-canvas" data-nombre="{{ page.title | escape }}" data-linea="{{ page.routestring | replace: " ", ""}}" data-circular="{% if page.cantidades.circularpunto %}true{% else %}false{% endif %}" data-pausas="{{ pausas | escape }}" data-ele="{{ altimetria | escape }}"></div>
+          <div id="map-canvas" data-nombre="{{ page.title | escape }}" data-category="{{ codigoactividad }}" data-linea="{{ page.routestring | replace: " ", ""}}" data-circular="{% if page.cantidades.circularpunto %}true{% else %}false{% endif %}" data-pausas="{{ pausas | escape }}" data-ele="{{ altimetria | escape }}"></div>
           {% if page.altimetria %}
-            <div id="elevation-canvas">Próximamente aquí la altimetría, cuando aprenda a generar un SVG con Javascript. Los datos están como data-ele en id=map-canvas.</div>
+            <div id="elevation-canvas"></div>
           {% endif %}
         </section>
       {% endif %}

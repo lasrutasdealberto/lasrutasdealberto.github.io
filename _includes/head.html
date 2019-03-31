@@ -77,7 +77,7 @@
   <script defer="defer" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <script defer="defer" src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
   <script defer="defer" src="{{ "/main.js" | relative_url }}"></script>
-  <script defer="defer" src="https://maps.googleapis.com/maps/api/js?key={{ site.google.apikey }}&amp;libraries=geometry&amp;callback=initMap"></script>
-  <script async="async" src="https://www.googletagmanager.com/gtag/js?id={{ site.google.analytics }}"></script>
+  {% if page.layout == "ruta" or page.layout== "mapa" %}<script defer="defer" src="https://maps.googleapis.com/maps/api/js?key={{ site.google.apikey }}&amp;libraries=geometry&amp;callback=initMap"></script>{% endif %}
+  <!--<script async="async" src="https://www.googletagmanager.com/gtag/js?id={{ site.google.analytics }}"></script>-->
   <link rel="stylesheet" href="{{ "/main.css" | relative_url }}" />
 </head>

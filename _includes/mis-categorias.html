@@ -97,4 +97,4 @@
 {%- else -%}00
 {%- endcase -%}
 {%- endcapture -%}
-{{ resultado }}
+{%- if include.removetrailzero -%}{{ resultado | remove_first: "0" }}{%- else -%}{{ resultado }}{%- endif -%}

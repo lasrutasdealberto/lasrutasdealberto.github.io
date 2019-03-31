@@ -1,0 +1,33 @@
+[
+{%- for p in site.posts %}
+{%- if p.routestring %}
+{
+"slug": "{{ p.slug }}",
+"title": {{ p.title | jsonify }},
+"date": "{{ p.date | date: "%Y" }}",
+"longdate": "{% include mi-fecha.html in=p.date %}",
+"routestring": {{ p.routestring | replace: " ", "" | jsonify }},
+"color": "{% include randomcolor.html in=forloop.index0 %}",
+"category": "{{ p.category }}",
+"categorycode": "{% include mis-categorias.html in=p.category %}",
+"circularpunto": {% if p.cantidades.circularpunto %}1{% else %}0{% endif %},
+"circularlocalidad": {% if p.cantidades.circularlocalidad %}1{% else %}0{% endif %},
+"distancia": {{ p.cantidades.distancia | default: 0 }},
+"duracion": {{ p.cantidades.duracion | default: 0 }},
+"tiempo": {{ p.cantidades.enmovimiento | default: 0 }},
+"ascenso": {{ p.cantidades.ascenso | default: 0 }},
+"descenso": {{ p.cantidades.descenso | default: 0 }},
+"cima": {{ p.cantidades.cima | default: 0 }},
+"sima": {{ p.cantidades.sima | default: 0 }},
+"ibp": {{ p.cantidades.ibp | default: 0 }},
+"resumen": {{ p.excerpt | jsonify }},
+{%- if p.altimetria %}
+{%- assign array_ele = "" | split: ',' %}
+{%- for e in p.altimetria %}{% assign array_ele = array_ele | push: e.ele %}{% endfor %}
+"ele": {{ array_ele | jsonify }}
+{%- else %}
+"ele": []
+{%- endif %}
+}{% unless forloop.last %},{% endunless %}
+{%- else %}{%- continue %}{%- endif %}{%- endfor %}
+]
